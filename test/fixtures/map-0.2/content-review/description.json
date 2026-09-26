@@ -1,0 +1,52 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000001",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/content-review",
+    "version": "0.3",
+    "contractDigest": "sha-256:4d5eef369cd6fbeb219221ae3d1c1dd3eeb8e751fd1b634f1e131838558519b7"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://reviews.example/service",
+    "name": "Example Review Service",
+    "authority": "credential",
+    "resource": "https://reviews.example/",
+    "execution": {
+      "url": "https://reviews.example/map/actions",
+      "resultUrlTemplate": "https://reviews.example/map/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://reviews.example/reviews/campaign-42/revision/4"
+  },
+  "target": {
+    "id": "https://reviews.example/content/campaign-42",
+    "revision": "4",
+    "title": "September product update",
+    "digest": "sha-256:0ee3ba1e0357f0d96da4f7f04b2d6ef5c8e3cab055f3ffd97204e530eef6e143"
+  },
+  "details": {
+    "supersedes": {
+      "revision": "3",
+      "digest": "sha-256:752ea73add0d882bfab951804ddfa745bb09e23216b77413e82e8db75432b0bf"
+    },
+    "addressesFeedback": [
+      "feedback-7c1d2e3f4a5b6c7d"
+    ]
+  },
+  "operations": [
+    {
+      "id": "request-changes",
+      "name": "Request changes",
+      "description": "Record feedback on revision 4."
+    },
+    {
+      "id": "approve",
+      "name": "Approve",
+      "description": "Record approval of revision 4."
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000007",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/task-assignment",
+    "version": "0.1",
+    "contractDigest": "sha-256:1e30b1cb2fdeb63622a51a49b2782662a4103b47cbcc5e477ed4c25758498f45"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://tasks.example/service",
+    "name": "Example Tasks",
+    "authority": "credential",
+    "resource": "https://tasks.example/",
+    "execution": {
+      "url": "https://tasks.example/map/actions",
+      "resultUrlTemplate": "https://tasks.example/map/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://tasks.example/tasks/link-check-3.6.9"
+  },
+  "target": {
+    "id": "https://tasks.example/tasks/link-check-3.6.9",
+    "revision": "0",
+    "title": "Check links in the 3.6.9 documentation",
+    "digest": "sha-256:8ca7d3f2097105660a0ed3abcafc91a844aaae316227b84295afa8d993112d45"
+  },
+  "details": {
+    "task": {
+      "uid": "link-check-3.6.9@tasks.example"
+    },
+    "summary": "Check every link in the 3.6.9 documentation release.",
+    "due": "2026-09-30T17:00:00Z",
+    "completionRequirements": "A report listing each broken link and the page it appears on."
+  },
+  "operations": [
+    {
+      "id": "accept",
+      "name": "Accept",
+      "description": "Take on the link check."
+    },
+    {
+      "id": "decline",
+      "name": "Decline",
+      "description": "Decline the link check."
+    },
+    {
+      "id": "report-progress",
+      "name": "Report progress",
+      "description": "Report how much of the check is done."
+    },
+    {
+      "id": "report-completion",
+      "name": "Report completion",
+      "description": "Submit the finished report."
+    }
+  ]
+}

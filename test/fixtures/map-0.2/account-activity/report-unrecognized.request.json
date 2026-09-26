@@ -1,0 +1,16 @@
+{
+  "kind": "MapRequest",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001911",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000010",
+  "descriptionDigest": "sha-256:3407464776024d53292e3d0dfce746f6198f7c92d6c5ddc3029d27510f8bf500",
+  "type": {
+    "id": "https://mailschema.org/types/account-activity",
+    "version": "0.1",
+    "contractDigest": "sha-256:91270db59b40b9d3b0ffb5b0a0c863ebf30b7ecc4d3f784297279ea1c2a83491"
+  },
+  "operation": "report-unrecognized",
+  "input": {
+    "note": "Not me; I was asleep."
+  }
+}

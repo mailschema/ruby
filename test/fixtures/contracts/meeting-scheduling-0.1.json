@@ -1,0 +1,126 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/meeting-scheduling",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "An offer of meeting times at the exact revision the description names. The details list the times; whether a time is still free is service state outside the revision.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    },
+    {
+      "url": "https://mailschema.org/schemas/forms-0.1.schema.json",
+      "canonicalDigest": "sha-256:5a9ee18da6422bf9641cc1ff7a87a9783a9cb8c1ad34e8bdaadd775e602ebb6a"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "summary": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "slots": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 100,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]{1,64}$"
+            },
+            "start": {
+              "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+            },
+            "end": {
+              "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+            }
+          },
+          "required": ["id", "start", "end"]
+        }
+      },
+      "attendeeFields": {
+        "$ref": "https://mailschema.org/schemas/forms-0.1.schema.json#/$defs/fields"
+      }
+    },
+    "required": ["summary", "slots"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/meeting-scheduling-0.1.schema.json",
+    "canonicalDigest": "sha-256:03f03946cb498a452b8a4428a2660e5d01057c8a13ea6039e5302b8d080ba43d"
+  },
+  "operations": [
+    {
+      "id": "book",
+      "effect": "Book one offered time and create the meeting.",
+      "authority": ["credential", "possession"],
+      "consequences": ["commitment", "disclosure"],
+      "fieldBindings": [
+        {
+          "input": "/values",
+          "fields": "/attendeeFields"
+        }
+      ],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "uid": {
+                "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "start": {
+                "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+              },
+              "end": {
+                "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+              }
+            },
+            "required": ["uid", "start", "end"]
+          }
+        },
+        {
+          "state": "failed",
+          "reasons": ["unavailable"],
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "effect": "Record that the recipient will not book any of the offered times.",
+      "authority": ["credential", "possession"],
+      "consequences": ["refusal"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "declined"
+              }
+            },
+            "required": ["decision"]
+          }
+        }
+      ]
+    }
+  ]
+}

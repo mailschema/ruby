@@ -1,0 +1,25 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001811",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000009",
+  "descriptionDigest": "sha-256:a38fcb9a3a5f4389956d4563f62ff29bc2a8bcd25c70b3f651e311ab47814bf0",
+  "type": {
+    "id": "https://mailschema.org/types/email-confirmation",
+    "version": "0.1",
+    "contractDigest": "sha-256:f7ba22e7d20ae004d248655e2c744eb1a131b3d1b88de77525551ce70ac131e3"
+  },
+  "operation": "report-unrecognized",
+  "state": "completed",
+  "target": {
+    "id": "https://accounts.example.com/pending/signup-5520",
+    "revision": "1",
+    "title": "Confirm your new account",
+    "digest": "sha-256:8fcc87f86199cbd5c4316d65bdca185cf3a232ab1ed43454ec0dfacaa2cfd216"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://accounts.example.com/map/c/Kc4nV7xP2mR9wL1tB5hQ8sD3fZ6yJ0aG/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001811",
+  "output": {
+    "cancelled": true
+  }
+}

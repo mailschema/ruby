@@ -1,0 +1,25 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001211",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000003",
+  "descriptionDigest": "sha-256:4b92f7af35173cae33a5fa75b04418b285a28ec4ea2f4162267afc5142d5fd24",
+  "type": {
+    "id": "https://mailschema.org/types/information-request",
+    "version": "0.1",
+    "contractDigest": "sha-256:66fbd4bc8b15264319ec9a843c8055399a734a412d23e8e2de1562aef8578ac9"
+  },
+  "operation": "decline",
+  "state": "completed",
+  "target": {
+    "id": "https://directory.example.org/listings/acme/requests/contact",
+    "revision": "1",
+    "title": "Confirm contact details for Acme",
+    "digest": "sha-256:f776a125132a267ddcdc99eab7e8f54116fd716ec0058f1849647bfd2654816f"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://directory.example.org/map/c/Hq7vK2mNw9Xb4Rt8Lp3sYd6fJc1gZa0e/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001211",
+  "output": {
+    "decision": "declined"
+  }
+}

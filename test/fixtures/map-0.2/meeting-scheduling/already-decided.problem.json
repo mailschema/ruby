@@ -1,0 +1,11 @@
+{
+  "type": "https://mailschema.org/problems/already-decided",
+  "title": "Interaction already decided",
+  "status": 409,
+  "detail": "Another request has already decided this interaction.",
+  "instance": "https://hiring.example.net/map/c/Zt5mQ1vB8nK3xR7wL2pH9sD4fG6jC0aY/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001402",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001402",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000005",
+  "code": "already-decided"
+}

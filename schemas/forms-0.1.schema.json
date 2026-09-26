@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailschema.org/schemas/forms-0.1.schema.json",
+  "title": "MailSchema form fields 0.1",
+  "description": "Shared, immutable blocks for types that collect values: a closed subset of JSON Schema based on Model Context Protocol elicitation, with HTML autofill field names.",
+  "$defs": {
+    "fieldName": {
+      "type": "string",
+      "pattern": "^[a-z][A-Za-z0-9]{0,63}$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "[^\\t\\n\\u000b\\f\\r \\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]"
+    },
+    "autocomplete": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^(?:section-[a-z0-9-]+ )?(?:(?:shipping|billing) )?(?:(?:home|work|mobile|fax|pager) )?[a-z][a-z0-9-]*$",
+      "not": {
+        "pattern": "(?:^| )(?:current-password|new-password|one-time-code|cc-[a-z-]+)$"
+      }
+    },
+    "choice": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "const": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "[^\\t\\n\\u000b\\f\\r \\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]"
+        }
+      },
+      "required": ["const", "title"]
+    },
+    "choices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/choice"
+      },
+      "minItems": 1,
+      "maxItems": 100
+    },
+    "textField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "string"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "minLength": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12000
+        },
+        "maxLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12000
+        },
+        "format": {
+          "enum": ["email", "uri", "date", "date-time"]
+        },
+        "default": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "autocomplete": {
+          "$ref": "#/$defs/autocomplete"
+        }
+      },
+      "required": ["type", "title"]
+    },
+    "numberField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": ["number", "integer"]
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "minimum": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "maximum": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "default": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "autocomplete": {
+          "$ref": "#/$defs/autocomplete"
+        }
+      },
+      "required": ["type", "title"]
+    },
+    "booleanField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "boolean"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "default": {
+          "type": "boolean"
+        }
+      },
+      "required": ["type", "title"]
+    },
+    "choiceField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "string"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "oneOf": {
+          "$ref": "#/$defs/choices"
+        },
+        "default": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "autocomplete": {
+          "$ref": "#/$defs/autocomplete"
+        }
+      },
+      "required": ["type", "title", "oneOf"]
+    },
+    "choicesField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "array"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "anyOf": {
+              "$ref": "#/$defs/choices"
+            }
+          },
+          "required": ["anyOf"]
+        },
+        "minItems": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "maxItems": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "uniqueItems": {
+          "const": true
+        },
+        "default": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        }
+      },
+      "required": ["type", "title", "items", "uniqueItems"]
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "object"
+        },
+        "properties": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 50,
+          "propertyNames": {
+            "$ref": "#/$defs/fieldName"
+          },
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/textField"
+              },
+              {
+                "$ref": "#/$defs/numberField"
+              },
+              {
+                "$ref": "#/$defs/booleanField"
+              },
+              {
+                "$ref": "#/$defs/choiceField"
+              },
+              {
+                "$ref": "#/$defs/choicesField"
+              }
+            ]
+          }
+        },
+        "required": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fieldName"
+          },
+          "uniqueItems": true,
+          "maxItems": 50
+        }
+      },
+      "required": ["type", "properties"]
+    },
+    "choiceFields": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "object"
+        },
+        "properties": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 50,
+          "propertyNames": {
+            "$ref": "#/$defs/fieldName"
+          },
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/booleanField"
+              },
+              {
+                "$ref": "#/$defs/choiceField"
+              },
+              {
+                "$ref": "#/$defs/choicesField"
+              }
+            ]
+          }
+        },
+        "required": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fieldName"
+          },
+          "uniqueItems": true,
+          "maxItems": 50
+        }
+      },
+      "required": ["type", "properties"]
+    },
+    "fieldValues": {
+      "type": "object",
+      "maxProperties": 50,
+      "propertyNames": {
+        "$ref": "#/$defs/fieldName"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 12000
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          }
+        ]
+      }
+    }
+  }
+}

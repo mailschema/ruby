@@ -1,0 +1,82 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000005",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/meeting-scheduling",
+    "version": "0.1",
+    "contractDigest": "sha-256:e72f70f3b2c459802a61f2edb416a97f74763fc423eca3540d11f96068ed8f25"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://hiring.example.net/service",
+    "name": "Example Recruiting",
+    "authority": "possession",
+    "execution": {
+      "url": "https://hiring.example.net/map/c/Zt5mQ1vB8nK3xR7wL2pH9sD4fG6jC0aY",
+      "resultUrlTemplate": "https://hiring.example.net/map/c/Zt5mQ1vB8nK3xR7wL2pH9sD4fG6jC0aY/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://hiring.example.net/interviews/8814/schedule"
+  },
+  "recipient": "alex@example.org",
+  "target": {
+    "id": "https://hiring.example.net/interviews/8814",
+    "revision": "1",
+    "title": "Interview for the platform engineer role",
+    "digest": "sha-256:634e324149d969083a079d8881ffd21db0571ea82f7f7515eba33a494820a5f6"
+  },
+  "details": {
+    "summary": "A 45-minute video interview for the platform engineer role.",
+    "slots": [
+      {
+        "id": "tue-1400",
+        "start": "2026-09-29T14:00:00Z",
+        "end": "2026-09-29T14:45:00Z"
+      },
+      {
+        "id": "wed-1000",
+        "start": "2026-09-30T10:00:00Z",
+        "end": "2026-09-30T10:45:00Z"
+      },
+      {
+        "id": "wed-1530",
+        "start": "2026-09-30T15:30:00Z",
+        "end": "2026-09-30T16:15:00Z"
+      }
+    ],
+    "attendeeFields": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Your name",
+          "maxLength": 200,
+          "autocomplete": "name"
+        },
+        "note": {
+          "type": "string",
+          "title": "Anything we should know",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "operations": [
+    {
+      "id": "book",
+      "name": "Book",
+      "description": "Book one of the offered interview times."
+    },
+    {
+      "id": "decline",
+      "name": "Decline",
+      "description": "Decline all of the offered times."
+    }
+  ]
+}

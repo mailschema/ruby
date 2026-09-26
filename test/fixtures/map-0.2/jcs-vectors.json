@@ -1,0 +1,56 @@
+[
+  {
+    "name": "member ordering",
+    "json": "{\"b\":2,\"a\":1,\"aa\":3,\"A\":4,\"é\":5}",
+    "canonical": "{\"A\":4,\"a\":1,\"aa\":3,\"b\":2,\"é\":5}",
+    "digest": "sha-256:ddbc230ff782f59d30f388932a6596b2bbb0510e4bb4883a91f579f0b2afb56b"
+  },
+  {
+    "name": "member ordering by UTF-16 code units",
+    "json": "{\"\\u20ac\":\"Euro Sign\",\"\\r\":\"Carriage Return\",\"\\ufb33\":\"Hebrew Letter Dalet With Dagesh\",\"1\":\"One\",\"\\ud83d\\ude00\":\"Emoji: Grinning Face\",\"\\u0080\":\"Control\",\"\\u00f6\":\"Latin Small Letter O With Diaeresis\"}",
+    "canonical": "{\"\\r\":\"Carriage Return\",\"1\":\"One\",\"\":\"Control\",\"ö\":\"Latin Small Letter O With Diaeresis\",\"€\":\"Euro Sign\",\"😀\":\"Emoji: Grinning Face\",\"דּ\":\"Hebrew Letter Dalet With Dagesh\"}",
+    "digest": "sha-256:5e321556d22018a9656991a9e94f77ec175fa193e52a2429d312f8419ec8b08c"
+  },
+  {
+    "name": "string escapes",
+    "json": "{\"s\":\"quote\\\" backslash\\\\ tab\\t line\\n nul\\u0000 bell\\u0007\"}",
+    "canonical": "{\"s\":\"quote\\\" backslash\\\\ tab\\t line\\n nul\\u0000 bell\\u0007\"}",
+    "digest": "sha-256:a0859d9bd34e9fe424424fee1947f6cececab32b675312ab80afdeff2da421df"
+  },
+  {
+    "name": "unicode is not normalised",
+    "json": "{\"s\":\"café ☕ 𝄞 e\\u0301\"}",
+    "canonical": "{\"s\":\"café ☕ 𝄞 é\"}",
+    "digest": "sha-256:b2dfcf2c8457081b45e99535ceee25907d48f3df2daf00e4faf5033643017733"
+  },
+  {
+    "name": "integers",
+    "json": "{\"n\":[0,-0,1,-1,9007199254740991,-9007199254740991]}",
+    "canonical": "{\"n\":[0,0,1,-1,9007199254740991,-9007199254740991]}",
+    "digest": "sha-256:823a8412f1f3318eb3aaa56dd79a435d67e455738a84348efa5124457d90357a"
+  },
+  {
+    "name": "numbers",
+    "json": "{\"n\":[1.5,1e21,1e-7,0.1,100,-0.5,1E2]}",
+    "canonical": "{\"n\":[1.5,1e+21,1e-7,0.1,100,-0.5,100]}",
+    "digest": "sha-256:36cff5012c572fc6d4f147e26e50a2e21b011eaac8c004594aa168e4002cc2e9"
+  },
+  {
+    "name": "shortest round-trip numbers",
+    "json": "{\"n\":[0.30000000000000004,1.2345678901234567,5e-324,1.7976931348623157e308,4.35,0.000001,123e-20,333333333.3333333]}",
+    "canonical": "{\"n\":[0.30000000000000004,1.2345678901234567,5e-324,1.7976931348623157e+308,4.35,0.000001,1.23e-18,333333333.3333333]}",
+    "digest": "sha-256:1e74e12ecd69f643e738f639208cac4e9f80ebc7994318786dbcb667e933d42d"
+  },
+  {
+    "name": "nesting and empties",
+    "json": "{\"a\":[],\"b\":{},\"c\":[{\"z\":null,\"y\":true,\"x\":false}]}",
+    "canonical": "{\"a\":[],\"b\":{},\"c\":[{\"x\":false,\"y\":true,\"z\":null}]}",
+    "digest": "sha-256:50e0ce9f658b6a6ccbd27a7541442b682be84a1a5a2a1c066e50512abebb2797"
+  },
+  {
+    "name": "Email Confirmation description",
+    "json": "{\"@context\":\"https://mailschema.org/contexts/map-0.2.jsonld\",\"@type\":\"MailAction\",\"@id\":\"urn:uuid:01926a00-0000-7000-8000-000000000009\",\"profile\":\"https://mailschema.org/profiles/map/0.2\",\"type\":{\"id\":\"https://mailschema.org/types/email-confirmation\",\"version\":\"0.1\",\"contractDigest\":\"sha-256:f7ba22e7d20ae004d248655e2c744eb1a131b3d1b88de77525551ce70ac131e3\"},\"describedAt\":\"2026-09-25T08:00:00Z\",\"expiresAt\":\"2026-10-02T08:00:00Z\",\"service\":{\"id\":\"https://accounts.example.com/service\",\"name\":\"Example Developer Tools\",\"authority\":\"possession\",\"execution\":{\"url\":\"https://accounts.example.com/map/c/Kc4nV7xP2mR9wL1tB5hQ8sD3fZ6yJ0aG\",\"resultUrlTemplate\":\"https://accounts.example.com/map/c/Kc4nV7xP2mR9wL1tB5hQ8sD3fZ6yJ0aG/results/{requestId}\",\"resultRetentionSeconds\":604800},\"humanUrl\":\"https://accounts.example.com/signup/pending\"},\"recipient\":\"alex+devtools-7f3a@example.org\",\"target\":{\"id\":\"https://accounts.example.com/pending/signup-5520\",\"revision\":\"1\",\"title\":\"Confirm your new account\",\"digest\":\"sha-256:8fcc87f86199cbd5c4316d65bdca185cf3a232ab1ed43454ec0dfacaa2cfd216\"},\"details\":{\"origin\":\"https://devtools.example.com\",\"address\":\"alex+devtools-7f3a@example.org\",\"purpose\":\"account-creation\",\"requestedAt\":\"2026-09-25T07:58:00Z\"},\"operations\":[{\"id\":\"confirm\",\"name\":\"Confirm\",\"description\":\"Confirm this address and create the account.\"},{\"id\":\"report-unrecognized\",\"name\":\"Report unrecognized\",\"description\":\"Report that you did not sign up.\"}]}",
+    "canonical": "{\"@context\":\"https://mailschema.org/contexts/map-0.2.jsonld\",\"@id\":\"urn:uuid:01926a00-0000-7000-8000-000000000009\",\"@type\":\"MailAction\",\"describedAt\":\"2026-09-25T08:00:00Z\",\"details\":{\"address\":\"alex+devtools-7f3a@example.org\",\"origin\":\"https://devtools.example.com\",\"purpose\":\"account-creation\",\"requestedAt\":\"2026-09-25T07:58:00Z\"},\"expiresAt\":\"2026-10-02T08:00:00Z\",\"operations\":[{\"description\":\"Confirm this address and create the account.\",\"id\":\"confirm\",\"name\":\"Confirm\"},{\"description\":\"Report that you did not sign up.\",\"id\":\"report-unrecognized\",\"name\":\"Report unrecognized\"}],\"profile\":\"https://mailschema.org/profiles/map/0.2\",\"recipient\":\"alex+devtools-7f3a@example.org\",\"service\":{\"authority\":\"possession\",\"execution\":{\"resultRetentionSeconds\":604800,\"resultUrlTemplate\":\"https://accounts.example.com/map/c/Kc4nV7xP2mR9wL1tB5hQ8sD3fZ6yJ0aG/results/{requestId}\",\"url\":\"https://accounts.example.com/map/c/Kc4nV7xP2mR9wL1tB5hQ8sD3fZ6yJ0aG\"},\"humanUrl\":\"https://accounts.example.com/signup/pending\",\"id\":\"https://accounts.example.com/service\",\"name\":\"Example Developer Tools\"},\"target\":{\"digest\":\"sha-256:8fcc87f86199cbd5c4316d65bdca185cf3a232ab1ed43454ec0dfacaa2cfd216\",\"id\":\"https://accounts.example.com/pending/signup-5520\",\"revision\":\"1\",\"title\":\"Confirm your new account\"},\"type\":{\"contractDigest\":\"sha-256:f7ba22e7d20ae004d248655e2c744eb1a131b3d1b88de77525551ce70ac131e3\",\"id\":\"https://mailschema.org/types/email-confirmation\",\"version\":\"0.1\"}}",
+    "digest": "sha-256:a38fcb9a3a5f4389956d4563f62ff29bc2a8bcd25c70b3f651e311ab47814bf0"
+  }
+]

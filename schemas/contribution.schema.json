@@ -1,0 +1,874 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MailSchema contribution format",
+  "description": "Repository contribution data. This is not a MAP message or wire representation.",
+  "$defs": {
+    "definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "maxLength": 100
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "\\S"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "status": {
+          "enum": ["Draft", "Proposal", "Reuse assessment"]
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?(?:-[a-zA-Z0-9.-]+)?$",
+              "maxLength": 80
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "profile": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "overview": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000,
+                "pattern": "\\S"
+              }
+            },
+            "required": ["id", "name", "description"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "inputs": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "results": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "permissions": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "humanRoute": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "example": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000,
+                "pattern": "\\S"
+              },
+              "minItems": 1,
+              "maxItems": 100
+            },
+            "exception": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 12000,
+              "pattern": "\\S"
+            }
+          },
+          "required": ["title", "steps", "exception"]
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "href": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://",
+                "maxLength": 2048
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000,
+                "pattern": "\\S"
+              }
+            },
+            "required": ["title", "href", "description"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "openQuestions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000,
+            "pattern": "\\S"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "maintainers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://",
+                "maxLength": 2048
+              }
+            },
+            "required": ["name"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "definition": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "href": {
+              "type": "string",
+              "pattern": "^/specification/(?:[a-z0-9-]+/)*$",
+              "maxLength": 300
+            }
+          },
+          "required": ["label", "href"]
+        }
+      },
+      "required": [
+        "slug",
+        "name",
+        "summary",
+        "category",
+        "status",
+        "version",
+        "profile",
+        "overview",
+        "target",
+        "operations",
+        "inputs",
+        "results",
+        "permissions",
+        "humanRoute",
+        "example",
+        "references",
+        "openQuestions",
+        "maintainers"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "Draft"
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "required": ["definition"],
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "maxLength": 100
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "\\S"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "status": {
+          "enum": ["Draft", "Proposal", "Reuse assessment"]
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?(?:-[a-zA-Z0-9.-]+)?$",
+              "maxLength": 80
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "profile": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "overview": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000,
+                "pattern": "\\S"
+              }
+            },
+            "required": ["id", "name", "description"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "inputs": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "results": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "permissions": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "humanRoute": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "example": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000,
+                "pattern": "\\S"
+              },
+              "minItems": 1,
+              "maxItems": 100
+            },
+            "exception": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 12000,
+              "pattern": "\\S"
+            }
+          },
+          "required": ["title", "steps", "exception"]
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "href": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://",
+                "maxLength": 2048
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000,
+                "pattern": "\\S"
+              }
+            },
+            "required": ["title", "href", "description"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "openQuestions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000,
+            "pattern": "\\S"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "maintainers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://",
+                "maxLength": 2048
+              }
+            },
+            "required": ["name"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "definition": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "href": {
+              "type": "string",
+              "pattern": "^/specification/(?:[a-z0-9-]+/)*$",
+              "maxLength": 300
+            }
+          },
+          "required": ["label", "href"]
+        },
+        "origin": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://",
+                "maxLength": 2048
+              }
+            },
+            "required": ["name"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000,
+                "pattern": "\\S"
+              },
+              "contributionId": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+                "maxLength": 100
+              }
+            },
+            "required": ["label", "description"]
+          },
+          "minItems": 1,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "slug",
+        "name",
+        "summary",
+        "category",
+        "status",
+        "version",
+        "profile",
+        "overview",
+        "target",
+        "operations",
+        "inputs",
+        "results",
+        "permissions",
+        "humanRoute",
+        "example",
+        "references",
+        "openQuestions",
+        "maintainers",
+        "origin",
+        "contributors",
+        "history"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "Draft"
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "required": ["definition"],
+            "properties": {
+              "version": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "const": "mailschema-contribution/1"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "maxLength": 100
+        },
+        "contributor": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://",
+              "maxLength": 2048
+            }
+          },
+          "required": ["name"]
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "maxLength": 2048
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "kind": {
+          "const": "new-type"
+        },
+        "record": {
+          "$ref": "#/$defs/definition"
+        }
+      },
+      "required": ["format", "id", "contributor", "summary", "kind", "record"]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "const": "mailschema-contribution/1"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "maxLength": 100
+        },
+        "contributor": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://",
+              "maxLength": 2048
+            }
+          },
+          "required": ["name"]
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "maxLength": 2048
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "kind": {
+          "const": "amendment"
+        },
+        "baseDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "record": {
+          "$ref": "#/$defs/definition"
+        }
+      },
+      "required": ["format", "id", "contributor", "summary", "kind", "baseDigest", "record"]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "const": "mailschema-contribution/1"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "maxLength": 100
+        },
+        "contributor": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://",
+              "maxLength": 2048
+            }
+          },
+          "required": ["name"]
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "maxLength": 2048
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "kind": {
+          "const": "implementation"
+        },
+        "type": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "maxLength": 100
+        },
+        "typeVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?(?:-[a-zA-Z0-9.-]+)?$",
+          "maxLength": 80
+        },
+        "typeDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "profile": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "\\S"
+        },
+        "product": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "\\S"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://",
+              "maxLength": 2048
+            }
+          },
+          "required": ["name"]
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": ["declaration", "test-report"]
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://",
+              "maxLength": 2048
+            },
+            "reproduction": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 12000,
+              "pattern": "\\S"
+            },
+            "results": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 12000,
+              "pattern": "\\S"
+            }
+          },
+          "required": ["kind"],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "test-report"
+                  }
+                },
+                "required": ["kind"]
+              },
+              "then": {
+                "required": ["url", "reproduction", "results"]
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "format",
+        "id",
+        "contributor",
+        "summary",
+        "kind",
+        "type",
+        "typeVersion",
+        "typeDigest",
+        "profile",
+        "product",
+        "operations",
+        "evidence"
+      ]
+    }
+  ]
+}

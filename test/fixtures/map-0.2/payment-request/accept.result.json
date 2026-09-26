@@ -1,0 +1,27 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001701",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000008",
+  "descriptionDigest": "sha-256:6413a5a35e1d6ef46f0a9efc85bc5892373437239f3e9010158cc5db8bfaae38",
+  "type": {
+    "id": "https://mailschema.org/types/payment-request",
+    "version": "0.1",
+    "contractDigest": "sha-256:098ee27abc0eea1c577a0bba5182155f1810053625bfeaba14a26e917c22c9bc"
+  },
+  "operation": "accept",
+  "state": "completed",
+  "target": {
+    "id": "https://billing.example/requests/INV-2026-0917",
+    "revision": "1",
+    "title": "Invoice INV-2026-0917",
+    "digest": "sha-256:dd5cf3dd69ba166baf3d4160221c2ff8bcf915f6a4f68006d21e59465c918f9b"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://billing.example/map/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001701",
+  "actor": "agent-client-3",
+  "output": {
+    "decision": "accepted",
+    "paymentDate": "2026-10-20"
+  }
+}

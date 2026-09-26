@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: rubygems
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
+        with:
+          ruby-version: '4.0'
+          bundler-cache: true
+      - run: bundle exec rake
+      - name: Check tag and gem version
+        run: test "${GITHUB_REF_NAME#v}" = "$(ruby -Ilib -e 'require "mailschema/version"; print Mailschema::VERSION')"
+      # RubyGems trusted publishing: the release exchanges this workflow's OIDC token, with no stored key.
+      - uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
+      - name: Publish GitHub release
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes pkg/*.gem
+        env:
+          GH_TOKEN: ${{ github.token }}

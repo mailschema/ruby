@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "map": "https://mailschema.org/ns/map#",
+    "schema": "https://schema.org/",
+    "MailAction": "map:MailAction",
+    "profile": {
+      "@id": "map:profile",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "map:interactionType",
+      "@context": {
+        "id": {
+          "@id": "map:id",
+          "@type": "@id"
+        }
+      }
+    },
+    "version": "schema:version",
+    "contractDigest": "map:contractDigest",
+    "describedAt": {
+      "@id": "schema:dateCreated",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "expiresAt": {
+      "@id": "schema:expires",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "service": {
+      "@id": "schema:provider",
+      "@context": {
+        "id": {
+          "@id": "map:id",
+          "@type": "@id"
+        }
+      }
+    },
+    "name": "schema:name",
+    "authority": "map:authority",
+    "onBehalfOf": {
+      "@id": "map:onBehalfOf",
+      "@context": {
+        "id": {
+          "@id": "map:id",
+          "@type": "@id"
+        }
+      }
+    },
+    "resource": {
+      "@id": "map:resource",
+      "@type": "@id"
+    },
+    "execution": "map:execution",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "resultUrlTemplate": "map:resultUrlTemplate",
+    "resultRetentionSeconds": "map:resultRetentionSeconds",
+    "humanUrl": {
+      "@id": "map:humanUrl",
+      "@type": "@id"
+    },
+    "target": {
+      "@id": "schema:object",
+      "@context": {
+        "id": {
+          "@id": "map:id",
+          "@type": "@id"
+        }
+      }
+    },
+    "recipient": "schema:recipient",
+    "details": {
+      "@id": "map:details",
+      "@type": "@json"
+    },
+    "revision": "schema:version",
+    "title": "schema:name",
+    "digest": "map:digest",
+    "operations": {
+      "@id": "schema:potentialAction",
+      "@container": "@set",
+      "@context": {
+        "id": "map:operationId"
+      }
+    },
+    "description": "schema:description"
+  }
+}

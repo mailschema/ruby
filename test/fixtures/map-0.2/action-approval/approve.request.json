@@ -1,0 +1,14 @@
+{
+  "kind": "MapRequest",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001101",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000002",
+  "descriptionDigest": "sha-256:d28578beda1b3fb0706ceb258fb79b815d430a760ddd2fa5966734dd5ed1f241",
+  "type": {
+    "id": "https://mailschema.org/types/action-approval",
+    "version": "0.1",
+    "contractDigest": "sha-256:c7829a31570c74cebcb87cdaf6627641b0fb23cb77446cce825d68c94edf4c31"
+  },
+  "operation": "approve",
+  "input": {}
+}

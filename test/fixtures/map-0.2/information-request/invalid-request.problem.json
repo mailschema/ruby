@@ -1,0 +1,17 @@
+{
+  "type": "https://mailschema.org/problems/invalid-request",
+  "title": "Invalid request input",
+  "status": 400,
+  "detail": "The input does not satisfy the operation contract.",
+  "instance": "https://directory.example.org/map/c/Hq7vK2mNw9Xb4Rt8Lp3sYd6fJc1gZa0e/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001201",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001201",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000003",
+  "code": "invalid-request",
+  "errors": [
+    {
+      "detail": "must match pattern \"^(?:[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]|[^\\u0000-\\u00a0\\u1680\\u2000-\\u200f\\u2028-\\u202f\\u205f-\\u206f\\u3000\\ufeff])+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$\"",
+      "pointer": "/values/supportEmail"
+    }
+  ]
+}

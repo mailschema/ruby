@@ -1,0 +1,80 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/email-confirmation",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "A pending request that needs proof of control of an address, identified in the details.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "origin": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/httpsOrigin"
+      },
+      "address": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/address"
+      },
+      "purpose": {
+        "enum": ["account-creation", "sign-in", "address-change", "subscription"]
+      },
+      "requestedAt": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+      }
+    },
+    "required": ["origin", "address", "purpose", "requestedAt"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/email-confirmation-0.1.schema.json",
+    "canonicalDigest": "sha-256:f7465cc662d83f115eacbf43d936e18daf8515bb18cd44484c11d39864944093"
+  },
+  "operations": [
+    {
+      "id": "confirm",
+      "effect": "Confirm the pending request, which completes it.",
+      "authority": ["possession"],
+      "consequences": ["assertion"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "confirmed": {
+                "const": true
+              }
+            },
+            "required": ["confirmed"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "report-unrecognized",
+      "effect": "Report that the recipient did not make the request. The service cancels it.",
+      "authority": ["possession"],
+      "consequences": ["protection"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "cancelled": {
+                "const": true
+              }
+            },
+            "required": ["cancelled"]
+          }
+        }
+      ]
+    }
+  ]
+}

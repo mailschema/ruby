@@ -1,0 +1,87 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000006",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/subscription-preferences",
+    "version": "0.1",
+    "contractDigest": "sha-256:7d300b52892bb287d370ec20e3fc9c4ce9ee69cff7b25646e23cdc4b3e70569b"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://news.example.com/service",
+    "name": "Example Newsletters",
+    "authority": "possession",
+    "execution": {
+      "url": "https://news.example.com/map/c/Pd8wX2kL5vN1qT7mB4hR9cS3fJ6yG0aZ",
+      "resultUrlTemplate": "https://news.example.com/map/c/Pd8wX2kL5vN1qT7mB4hR9cS3fJ6yG0aZ/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://news.example.com/preferences"
+  },
+  "recipient": "alex@example.org",
+  "target": {
+    "id": "https://news.example.com/subscribers/4471/updates",
+    "revision": "3",
+    "title": "Product updates",
+    "digest": "sha-256:b8ed03641175c3795cec81bcb280fcf306f4268ccd2ca2ac69ca84ae1ac2b393"
+  },
+  "details": {
+    "listId": "updates.news.example.com",
+    "fields": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "title": "How often",
+          "oneOf": [
+            {
+              "const": "immediate",
+              "title": "As they happen"
+            },
+            {
+              "const": "weekly",
+              "title": "Weekly digest"
+            }
+          ],
+          "default": "immediate"
+        },
+        "topics": {
+          "type": "array",
+          "title": "Topics",
+          "items": {
+            "anyOf": [
+              {
+                "const": "product",
+                "title": "Product news"
+              },
+              {
+                "const": "events",
+                "title": "Events"
+              }
+            ]
+          },
+          "uniqueItems": true,
+          "default": [
+            "product",
+            "events"
+          ]
+        },
+        "paused": {
+          "type": "boolean",
+          "title": "Pause all email",
+          "default": false
+        }
+      }
+    }
+  },
+  "operations": [
+    {
+      "id": "update-preferences",
+      "name": "Update preferences",
+      "description": "Change how often and about what we email you."
+    }
+  ]
+}

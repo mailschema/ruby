@@ -1,0 +1,2618 @@
+[
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00.1Z",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00.123+05:30",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2024-02-29T00:00:00Z",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2000-02-29T00:00:00-12:00",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25 08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00+01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00+0100",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": " 2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "-2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25t08:00:00z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00.0001Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-02-29T00:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "1900-02-29T00:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-24T23:59:60Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-13-01T00:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-31T00:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T24:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00+24:00",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "\n2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "x\n2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "\r2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "x\r2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "\r\n2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "x\r\n2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "x2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": " 2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "x 2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "2026-09-25T08:00:00Z ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": " 2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "dateTime",
+    "value": "x 2026-09-25T08:00:00Z",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2024-02-29",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2000-02-29",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": " 2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "-2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-02-29",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "1900-02-29",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-1-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-04-31",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "\n2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "x\n2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "\r2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "x\r2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "\r\n2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "x\r\n2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "x2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01 ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": " 2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "x 2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "2026-01-01 ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": " 2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "date",
+    "value": "x 2026-01-01",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex+devtools-7f3a@example.org",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a@localhost",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "first.last@sub.example.co",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "aléx@example.org",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "用户@xn--bcher-kva.example",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a😀@example.org",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "ab@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a b@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a b@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a　b@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a​b@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a‮b@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a⁦b@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "\"a b\"@example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a@[127.0.0.1]",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a@-example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a@example..com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a@example.com.",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@bücher.example",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a b@example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "@example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a@",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "a@example.com\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "\nalex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "x\nalex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "\ralex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "x\ralex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "\r\nalex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "x\r\nalex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "xalex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": " alex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "x alex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "alex@example.org ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": " alex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "address",
+    "value": "x alex@example.org",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "mailto:a@example.com",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/a%20b",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/?a[]=1",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/?q=a|b",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/?q=a^b",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/?q={x}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "x:",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/a b",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/ ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "no-scheme",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/%zz",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "\nhttps://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "x\nhttps://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "\rhttps://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "x\rhttps://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "\r\nhttps://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "x\r\nhttps://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "xhttps://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": " https://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "x https://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "https://example.com/ ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": " https://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "identifier",
+    "value": "x https://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com:8443/path?q=1#f",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://xn--bcher-kva.example/",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://app.nitrosend.test/my/map",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://3com.com/",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "http://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com:port/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com:99999/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://1.2.3.256/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://1.2.3.4/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://exa%00mple.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://user@example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://-example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com:0/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com/ ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example..com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com./",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "\nhttps://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "x\nhttps://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "\rhttps://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "x\rhttps://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "\r\nhttps://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "x\r\nhttps://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "xhttps://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": " https://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "x https://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "https://example.com ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": " https://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsIdentifier",
+    "value": "x https://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com:8443/map/actions?tenant=1",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/#section",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/map/actions#run",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "http://api.example.com/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "\nhttps://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "x\nhttps://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "\rhttps://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "x\rhttps://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "\r\nhttps://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "x\r\nhttps://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "xhttps://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": " https://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "x https://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "https://api.example.com/v1/my/map ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": " https://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsTarget",
+    "value": "x https://api.example.com/v1/my/map",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://example.com:8443",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://example.com/",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://example.com:99999",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "http://example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "\nhttps://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "x\nhttps://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "\rhttps://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "x\rhttps://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "\r\nhttps://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "x\r\nhttps://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "xhttps://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": " https://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "x https://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "https://devtools.example.com ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": " https://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "httpsOrigin",
+    "value": "x https://devtools.example.com",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId}",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com/r?id={requestId}",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com/r/{requestId}#result",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/r/ {requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com/r#{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com#{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com/{request.Id}{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com/{requestId}/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com/results",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com/r/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://example.com{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId}\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "\nhttps://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "x\nhttps://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId}\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "\rhttps://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "x\rhttps://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId}\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "\r\nhttps://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "x\r\nhttps://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "xhttps://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId} ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": " https://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "x https://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "https://reviews.example/map/results/{requestId} ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": " https://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "urlTemplate",
+    "value": "x https://reviews.example/map/results/{requestId}",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "request-changes",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "a1-b2",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "Approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "-approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve-",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve--now",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve now",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "1approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "\napprove",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "x\napprove",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "\rapprove",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "x\rapprove",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "\r\napprove",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "x\r\napprove",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "xapprove",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": " approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "x approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "approve ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": " approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "token",
+    "value": "x approve",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "x\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "\rsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "x\rsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "\r\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "x\r\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "xsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": " sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "x sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": " sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "digest",
+    "value": "x sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "URN:UUID:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926A00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-0000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-c000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "\nurn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "x\nurn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "\rurn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "x\rurn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "\r\nurn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "x\r\nurn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "xurn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001 ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": " urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "x urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "urn:uuid:01926a00-0000-7000-8000-000000000001 ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": " urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "uuidUrn",
+    "value": "x urn:uuid:01926a00-0000-7000-8000-000000000001",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "x\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "\rsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "x\rsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "\r\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "x\r\nsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "xsha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": " sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "x sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": " sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "contractDigest",
+    "value": "x sha-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "authorizationDetails",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "seats_1",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "1a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "_a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a-b",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "prix€",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "x\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "\ra",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "x\ra",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "\r\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "x\r\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "xa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": " a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "x a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "a ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": " a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "detailsKey",
+    "value": "x a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": "a",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": " a ",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": "é",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": "😀",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": "   ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": " ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": " ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": "\t\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": "﻿",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+    "definition": "nonBlank",
+    "value": "　",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "companyName",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "aBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "A",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "1a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "company_name",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "company-name",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "x\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "\ra",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "x\ra",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "\r\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "x\r\na",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "xa",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": " a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "x a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "a ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": " a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "fieldName",
+    "value": "x a",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "shipping postal-code",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "section-a1 billing work tel",
+    "valid": true
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "Email",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "new-password",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "billing cc-number",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "section- email",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "home  tel",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "\nemail",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "x\nemail",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email\r",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "\remail",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "x\remail",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email\r\n",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "\r\nemail",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "x\r\nemail",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "xemail",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": " email",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "x email",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "email ",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": " email",
+    "valid": false
+  },
+  {
+    "schema": "https://mailschema.org/schemas/forms-0.1.schema.json",
+    "definition": "autocomplete",
+    "value": "x email",
+    "valid": false
+  }
+]

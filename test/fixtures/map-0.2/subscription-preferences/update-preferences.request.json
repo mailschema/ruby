@@ -1,0 +1,18 @@
+{
+  "kind": "MapRequest",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001501",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000006",
+  "descriptionDigest": "sha-256:1805c866d2428ced8c980ffe0ee6eec44100c85ff6e20feaa2fb1d681d5e3a5a",
+  "type": {
+    "id": "https://mailschema.org/types/subscription-preferences",
+    "version": "0.1",
+    "contractDigest": "sha-256:7d300b52892bb287d370ec20e3fc9c4ce9ee69cff7b25646e23cdc4b3e70569b"
+  },
+  "operation": "update-preferences",
+  "input": {
+    "values": {
+      "frequency": "weekly"
+    }
+  }
+}

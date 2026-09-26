@@ -1,0 +1,17 @@
+{
+  "type": "https://mailschema.org/problems/stale-target",
+  "title": "The target revision is stale",
+  "status": 409,
+  "detail": "The target has changed since this interaction was described. No effect was applied.",
+  "instance": "https://reviews.example/map/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001011",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001011",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000001",
+  "code": "stale-target",
+  "target": {
+    "id": "https://reviews.example/content/campaign-42",
+    "revision": "5",
+    "title": "September product update",
+    "digest": "sha-256:3faacaa87a2a9e8ca6236e286a19af95a13ce5c25d6252db2d36c7c35786430e"
+  }
+}

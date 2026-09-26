@@ -1,0 +1,25 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001011",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000001",
+  "descriptionDigest": "sha-256:34e7725e0ebedcccae4403742ca84accfea3b2d9a4092b4e9bdfb91c85cc7a6c",
+  "type": {
+    "id": "https://mailschema.org/types/content-review",
+    "version": "0.3",
+    "contractDigest": "sha-256:4d5eef369cd6fbeb219221ae3d1c1dd3eeb8e751fd1b634f1e131838558519b7"
+  },
+  "operation": "approve",
+  "state": "approval-required",
+  "target": {
+    "id": "https://reviews.example/content/campaign-42",
+    "revision": "4",
+    "title": "September product update",
+    "digest": "sha-256:0ee3ba1e0357f0d96da4f7f04b2d6ef5c8e3cab055f3ffd97204e530eef6e143"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://reviews.example/map/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001011",
+  "actor": "agent-client-3",
+  "approvalUrl": "https://reviews.example/approvals/urn%3Auuid%3A01926a00-0000-7000-8000-000000001011",
+  "output": {}
+}

@@ -1,0 +1,73 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000003",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/information-request",
+    "version": "0.1",
+    "contractDigest": "sha-256:66fbd4bc8b15264319ec9a843c8055399a734a412d23e8e2de1562aef8578ac9"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://directory.example.org/service",
+    "name": "Example Company Directory",
+    "authority": "possession",
+    "execution": {
+      "url": "https://directory.example.org/map/c/Hq7vK2mNw9Xb4Rt8Lp3sYd6fJc1gZa0e",
+      "resultUrlTemplate": "https://directory.example.org/map/c/Hq7vK2mNw9Xb4Rt8Lp3sYd6fJc1gZa0e/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://directory.example.org/listings/acme/confirm"
+  },
+  "recipient": "ops@acme.example",
+  "target": {
+    "id": "https://directory.example.org/listings/acme/requests/contact",
+    "revision": "1",
+    "title": "Confirm contact details for Acme",
+    "digest": "sha-256:f776a125132a267ddcdc99eab7e8f54116fd716ec0058f1849647bfd2654816f"
+  },
+  "details": {
+    "purpose": "Keep the public contact details on the Acme listing current.",
+    "fields": {
+      "type": "object",
+      "properties": {
+        "supportEmail": {
+          "type": "string",
+          "title": "Support email address",
+          "format": "email",
+          "autocomplete": "work email"
+        },
+        "website": {
+          "type": "string",
+          "title": "Website",
+          "format": "uri",
+          "autocomplete": "url"
+        },
+        "employees": {
+          "type": "integer",
+          "title": "Number of employees",
+          "minimum": 1,
+          "maximum": 1000000
+        }
+      },
+      "required": [
+        "supportEmail",
+        "website"
+      ]
+    }
+  },
+  "operations": [
+    {
+      "id": "submit-response",
+      "name": "Submit response",
+      "description": "Send the requested contact details."
+    },
+    {
+      "id": "decline",
+      "name": "Decline",
+      "description": "Decline to provide the details."
+    }
+  ]
+}

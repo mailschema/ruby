@@ -1,0 +1,113 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/content-review",
+  "version": "0.3",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "Service-owned content at the exact revision the description names. The target digest identifies the reviewed representation.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "supersedes": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "revision": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "digest": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/digest"
+          }
+        },
+        "required": ["revision", "digest"]
+      },
+      "addressesFeedback": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:~-]{1,200}$"
+        },
+        "minItems": 1,
+        "maxItems": 100,
+        "uniqueItems": true
+      }
+    }
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/content-review-0.3.schema.json",
+    "canonicalDigest": "sha-256:f0f6e30b55c335a25aa278d002e8c430f2c0210bb9cd2b3677981e20268fb9ee"
+  },
+  "operations": [
+    {
+      "id": "request-changes",
+      "effect": "Record review feedback on the revision.",
+      "authority": ["credential"],
+      "consequences": ["record"],
+      "repeatable": true,
+      "results": [
+        {
+          "state": "accepted",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "feedbackRecorded": {
+                "const": true
+              },
+              "feedbackId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._:~-]{1,200}$"
+              }
+            },
+            "required": ["feedbackRecorded", "feedbackId"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "approve",
+      "effect": "Record approval of the revision, or propose it for a human decision.",
+      "authority": ["credential"],
+      "consequences": ["authorization"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "approved"
+              }
+            },
+            "required": ["decision"]
+          }
+        },
+        {
+          "state": "approval-required",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false
+          }
+        },
+        {
+          "state": "failed",
+          "reasons": ["declined", "stale-target", "expired", "superseded"],
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false
+          }
+        }
+      ]
+    }
+  ]
+}

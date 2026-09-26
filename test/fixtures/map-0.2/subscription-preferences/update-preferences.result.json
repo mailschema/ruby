@@ -1,0 +1,25 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001501",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000006",
+  "descriptionDigest": "sha-256:1805c866d2428ced8c980ffe0ee6eec44100c85ff6e20feaa2fb1d681d5e3a5a",
+  "type": {
+    "id": "https://mailschema.org/types/subscription-preferences",
+    "version": "0.1",
+    "contractDigest": "sha-256:7d300b52892bb287d370ec20e3fc9c4ce9ee69cff7b25646e23cdc4b3e70569b"
+  },
+  "operation": "update-preferences",
+  "state": "completed",
+  "target": {
+    "id": "https://news.example.com/subscribers/4471/updates",
+    "revision": "3",
+    "title": "Product updates",
+    "digest": "sha-256:b8ed03641175c3795cec81bcb280fcf306f4268ccd2ca2ac69ca84ae1ac2b393"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://news.example.com/map/c/Pd8wX2kL5vN1qT7mB4hR9cS3fJ6yG0aZ/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001501",
+  "output": {
+    "effectiveAt": "2026-09-25T09:00:00.000Z"
+  }
+}

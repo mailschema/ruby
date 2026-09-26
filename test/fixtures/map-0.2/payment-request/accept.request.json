@@ -1,0 +1,16 @@
+{
+  "kind": "MapRequest",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001701",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000008",
+  "descriptionDigest": "sha-256:6413a5a35e1d6ef46f0a9efc85bc5892373437239f3e9010158cc5db8bfaae38",
+  "type": {
+    "id": "https://mailschema.org/types/payment-request",
+    "version": "0.1",
+    "contractDigest": "sha-256:098ee27abc0eea1c577a0bba5182155f1810053625bfeaba14a26e917c22c9bc"
+  },
+  "operation": "accept",
+  "input": {
+    "paymentDate": "2026-10-20"
+  }
+}

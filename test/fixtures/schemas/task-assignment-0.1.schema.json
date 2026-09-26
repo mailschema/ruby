@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailschema.org/schemas/task-assignment-0.1.schema.json",
+  "title": "Task Assignment 0.1 request",
+  "allOf": [
+    {
+      "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/request"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "const": "https://mailschema.org/types/task-assignment"
+            },
+            "version": {
+              "const": "0.1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "accept"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "comment": {
+                  "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "decline"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "reason": {
+                  "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "report-progress"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "percentComplete": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "note": {
+                  "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                }
+              },
+              "required": ["percentComplete"]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "report-completion"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "report": {
+                  "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 12000
+                },
+                "evidence": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/httpsIdentifier"
+                  },
+                  "maxItems": 20,
+                  "uniqueItems": true
+                }
+              },
+              "required": ["report"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

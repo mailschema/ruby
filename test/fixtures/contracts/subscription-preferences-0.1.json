@@ -1,0 +1,66 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/subscription-preferences",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "A recipient's subscription at the exact revision the description names. The details define the offered settings.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    },
+    {
+      "url": "https://mailschema.org/schemas/forms-0.1.schema.json",
+      "canonicalDigest": "sha-256:5a9ee18da6422bf9641cc1ff7a87a9783a9cb8c1ad34e8bdaadd775e602ebb6a"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "listId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255
+      },
+      "fields": {
+        "$ref": "https://mailschema.org/schemas/forms-0.1.schema.json#/$defs/choiceFields"
+      }
+    },
+    "required": ["fields"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/subscription-preferences-0.1.schema.json",
+    "canonicalDigest": "sha-256:174d6ce3beea3432fba2a75e3e97b00e3a01f5cef99ea2526e89322621de01a2"
+  },
+  "operations": [
+    {
+      "id": "update-preferences",
+      "effect": "Record the chosen settings.",
+      "authority": ["credential", "possession"],
+      "consequences": ["record"],
+      "repeatable": true,
+      "fieldBindings": [
+        {
+          "input": "/values",
+          "fields": "/fields"
+        }
+      ],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "effectiveAt": {
+                "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+              }
+            },
+            "required": ["effectiveAt"]
+          }
+        }
+      ]
+    }
+  ]
+}

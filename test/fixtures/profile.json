@@ -1,0 +1,30 @@
+{
+  "id": "https://mailschema.org/profiles/map/0.2",
+  "name": "Mail Action Protocol 0.2",
+  "status": "working-draft",
+  "description": "A type-agnostic core: a JSON-LD description in Structured Email, bound by digest to the request that acts on it, executed over HTTPS with credential or possession authority. Types are defined by digest-bound contracts.",
+  "context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "schema": "https://mailschema.org/schemas/map-0.2.schema.json",
+  "contractFormat": "https://mailschema.org/schemas/type-contract-0.2.schema.json",
+  "specification": "https://mailschema.org/specification/profile",
+  "requestMediaType": "application/json",
+  "resultMediaType": "application/json",
+  "problemMediaType": "application/problem+json",
+  "artifacts": {
+    "context": {
+      "url": "https://mailschema.org/contexts/map-0.2.jsonld",
+      "sha256": "dfed0189524d7d16d31ed3d8af97e9a0c458200c4c034b413f9d14fa35b60257"
+    },
+    "schema": {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "sha256": "732d60fcb758d945dc15c57d885c9d1c0c76423a7439096d9755e8ec9830836a"
+    },
+    "contractFormat": {
+      "url": "https://mailschema.org/schemas/type-contract-0.2.schema.json",
+      "sha256": "e030007cc034662c9d9d448a8a035aff3106cfb96fb60e6aa9f92b99b25df0b9"
+    },
+    "conformance": {
+      "url": "https://github.com/mailschema/mailschema/blob/main/conformance/map-0.2/manifest.json"
+    }
+  }
+}

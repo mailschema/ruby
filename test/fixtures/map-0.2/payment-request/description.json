@@ -1,0 +1,64 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000008",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/payment-request",
+    "version": "0.1",
+    "contractDigest": "sha-256:098ee27abc0eea1c577a0bba5182155f1810053625bfeaba14a26e917c22c9bc"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://billing.example/service",
+    "name": "Example Billing",
+    "authority": "credential",
+    "onBehalfOf": {
+      "id": "https://billing.example/creditors/northwind",
+      "name": "Northwind Supplies Ltd"
+    },
+    "resource": "https://billing.example/",
+    "execution": {
+      "url": "https://billing.example/map/actions",
+      "resultUrlTemplate": "https://billing.example/map/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://billing.example/invoices/INV-2026-0917"
+  },
+  "target": {
+    "id": "https://billing.example/requests/INV-2026-0917",
+    "revision": "1",
+    "title": "Invoice INV-2026-0917",
+    "digest": "sha-256:dd5cf3dd69ba166baf3d4160221c2ff8bcf915f6a4f68006d21e59465c918f9b"
+  },
+  "details": {
+    "creditorName": "Northwind Supplies Ltd",
+    "creditorAccount": {
+      "iban": "GB33BUKB20201555555555",
+      "bic": "BUKBGB22"
+    },
+    "instructedAmount": {
+      "currency": "EUR",
+      "amount": "1250.00"
+    },
+    "dueDate": "2026-10-25",
+    "remittanceInformationUnstructured": "Invoice INV-2026-0917",
+    "invoice": {
+      "id": "INV-2026-0917",
+      "url": "https://billing.example/invoices/INV-2026-0917"
+    }
+  },
+  "operations": [
+    {
+      "id": "accept",
+      "name": "Accept",
+      "description": "Commit to pay invoice INV-2026-0917."
+    },
+    {
+      "id": "decline",
+      "name": "Decline",
+      "description": "Refuse invoice INV-2026-0917."
+    }
+  ]
+}

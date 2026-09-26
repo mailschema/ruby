@@ -1,0 +1,14 @@
+{
+  "kind": "MapRequest",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001411",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000005",
+  "descriptionDigest": "sha-256:0ac3b0399227ddbb80460ebf7b4f088960207e0b063dece1e7e0ce7639c7db5e",
+  "type": {
+    "id": "https://mailschema.org/types/meeting-scheduling",
+    "version": "0.1",
+    "contractDigest": "sha-256:e72f70f3b2c459802a61f2edb416a97f74763fc423eca3540d11f96068ed8f25"
+  },
+  "operation": "decline",
+  "input": {}
+}

@@ -1,0 +1,151 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/payment-request",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "A request to pay at the exact revision the description names. The details state the payee, account, amount and due date; a change to any of them is a new revision.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "creditorName": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      },
+      "creditorAccount": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "iban": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$"
+          },
+          "bic": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}(?:[A-Z0-9]{3})?$"
+          },
+          "identification": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          }
+        },
+        "anyOf": [
+          {
+            "required": ["iban"]
+          },
+          {
+            "required": ["identification"]
+          }
+        ]
+      },
+      "creditorIdentifier": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      },
+      "instructedAmount": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^(?:0|[1-9][0-9]{0,14})(?:\\.[0-9]{1,6})?$"
+          }
+        },
+        "required": ["currency", "amount"]
+      },
+      "dueDate": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/date"
+      },
+      "remittanceInformationUnstructured": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 140
+      },
+      "invoice": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "url": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/httpsIdentifier"
+          }
+        },
+        "required": ["id"]
+      }
+    },
+    "required": ["creditorName", "creditorAccount", "instructedAmount", "dueDate"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/payment-request-0.1.schema.json",
+    "canonicalDigest": "sha-256:6eb8d7811ea81d48fe55242730cb89aac87fb26515bb075400a2d81d5eddbe07"
+  },
+  "operations": [
+    {
+      "id": "accept",
+      "effect": "Record the payer's commitment to pay on the stated date.",
+      "authority": ["credential"],
+      "consequences": ["commitment"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "accepted"
+              },
+              "paymentDate": {
+                "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/date"
+              }
+            },
+            "required": ["decision", "paymentDate"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "effect": "Record that the payer refuses the request.",
+      "authority": ["credential"],
+      "consequences": ["refusal"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "declined"
+              }
+            },
+            "required": ["decision"]
+          }
+        }
+      ]
+    }
+  ]
+}

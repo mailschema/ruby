@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailschema.org/schemas/meeting-scheduling-0.1.schema.json",
+  "title": "Meeting Scheduling 0.1 request",
+  "allOf": [
+    {
+      "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/request"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "const": "https://mailschema.org/types/meeting-scheduling"
+            },
+            "version": {
+              "const": "0.1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "book"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "slot": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9._-]{1,64}$"
+                },
+                "values": {
+                  "$ref": "https://mailschema.org/schemas/forms-0.1.schema.json#/$defs/fieldValues"
+                }
+              },
+              "required": ["slot"]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "decline"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "reason": {
+                  "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

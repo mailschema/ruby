@@ -1,0 +1,114 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/event-response",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "An iCalendar event, or one occurrence of it, identified in the details. The target revision is the invitation SEQUENCE and the target digest is the SHA-256 of the iCalendar part carried in the message.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "event": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uid": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "recurrenceId": {
+            "type": "string",
+            "pattern": "^[0-9]{8}(?:T[0-9]{6}Z)?$"
+          }
+        },
+        "required": ["uid"]
+      },
+      "attendee": {
+        "type": "string",
+        "pattern": "^mailto:[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$",
+        "maxLength": 330
+      }
+    },
+    "required": ["event", "attendee"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/event-response-0.1.schema.json",
+    "canonicalDigest": "sha-256:79de685cae7a0846d80fb99a7f4b52640475d775174fb127b8093806965d7ca6"
+  },
+  "operations": [
+    {
+      "id": "accept",
+      "effect": "Record participation status ACCEPTED for the attendee.",
+      "authority": ["credential", "possession"],
+      "consequences": ["commitment"],
+      "repeatable": true,
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "participationStatus": {
+                "const": "accepted"
+              }
+            },
+            "required": ["participationStatus"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "effect": "Record participation status DECLINED for the attendee.",
+      "authority": ["credential", "possession"],
+      "consequences": ["refusal"],
+      "repeatable": true,
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "participationStatus": {
+                "const": "declined"
+              }
+            },
+            "required": ["participationStatus"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "respond-tentatively",
+      "effect": "Record participation status TENTATIVE for the attendee.",
+      "authority": ["credential", "possession"],
+      "consequences": ["commitment"],
+      "repeatable": true,
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "participationStatus": {
+                "const": "tentative"
+              }
+            },
+            "required": ["participationStatus"]
+          }
+        }
+      ]
+    }
+  ]
+}

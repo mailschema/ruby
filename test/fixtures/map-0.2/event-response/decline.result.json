@@ -1,0 +1,25 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001311",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000004",
+  "descriptionDigest": "sha-256:e64052d2c3692495f7dafdd5b35e302ed54a1bc109e9a1eb95fa3882c27a02b8",
+  "type": {
+    "id": "https://mailschema.org/types/event-response",
+    "version": "0.1",
+    "contractDigest": "sha-256:43ef4f683ae7f99b056c983439d84e2906aae25bbd6ccf0cefc199592fc8bdca"
+  },
+  "operation": "decline",
+  "state": "completed",
+  "target": {
+    "id": "https://calendar.example.net/events/workshop-2026-10",
+    "revision": "2",
+    "title": "Design systems workshop",
+    "digest": "sha-256:8f0e5f23721afc145bd03629c9353659080ffbc397119aeae6d52c19be471616"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://calendar.example.net/map/c/Wf2kR8xLq5Nv1Tz7Mb4Hc9Ds3Pj6Ya0G/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001311",
+  "output": {
+    "participationStatus": "declined"
+  }
+}

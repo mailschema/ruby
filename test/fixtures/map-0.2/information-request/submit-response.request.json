@@ -1,0 +1,20 @@
+{
+  "kind": "MapRequest",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001201",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000003",
+  "descriptionDigest": "sha-256:4b92f7af35173cae33a5fa75b04418b285a28ec4ea2f4162267afc5142d5fd24",
+  "type": {
+    "id": "https://mailschema.org/types/information-request",
+    "version": "0.1",
+    "contractDigest": "sha-256:66fbd4bc8b15264319ec9a843c8055399a734a412d23e8e2de1562aef8578ac9"
+  },
+  "operation": "submit-response",
+  "input": {
+    "values": {
+      "supportEmail": "support@acme.example",
+      "website": "https://acme.example",
+      "employees": 42
+    }
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "contentType": "application/json",
+    "accepted": true
+  },
+  {
+    "contentType": "Application/JSON",
+    "accepted": true
+  },
+  {
+    "contentType": "application/json; charset=utf-8",
+    "accepted": true
+  },
+  {
+    "contentType": "application/json;charset=\"UTF-8\"",
+    "accepted": true
+  },
+  {
+    "contentType": "application/json ;\tcharset=utf-8",
+    "accepted": true
+  },
+  {
+    "contentType": " application/json\t",
+    "accepted": true
+  },
+  {
+    "contentType": "application/json; charset=utf-8; charset=utf-8",
+    "accepted": true
+  },
+  {
+    "contentType": "application/json;",
+    "accepted": true
+  },
+  {
+    "contentType": "application/json; ;charset=utf-8",
+    "accepted": true
+  },
+  {
+    "contentType": "",
+    "accepted": false
+  },
+  {
+    "contentType": "text/plain",
+    "accepted": false
+  },
+  {
+    "contentType": "application/jsonx",
+    "accepted": false
+  },
+  {
+    "contentType": "application/problem+json",
+    "accepted": false
+  },
+  {
+    "contentType": "application/json, text/plain",
+    "accepted": false
+  },
+  {
+    "contentType": ";application/json",
+    "accepted": false
+  },
+  {
+    "contentType": "application/json; charset=latin1",
+    "accepted": false
+  },
+  {
+    "contentType": "application/json; charset=utf8",
+    "accepted": false
+  },
+  {
+    "contentType": "application/json; charset = utf-8",
+    "accepted": false
+  },
+  {
+    "contentType": "application/json; charset=utf-8; x=1",
+    "accepted": false
+  },
+  {
+    "contentType": "application/json; charset=utf-8",
+    "accepted": false
+  },
+  {
+    "contentType": "application/json\u000b",
+    "accepted": false
+  }
+]

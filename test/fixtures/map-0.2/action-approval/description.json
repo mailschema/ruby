@@ -1,0 +1,65 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000002",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/action-approval",
+    "version": "0.1",
+    "contractDigest": "sha-256:c7829a31570c74cebcb87cdaf6627641b0fb23cb77446cce825d68c94edf4c31"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://buy.example/service",
+    "name": "Example Purchasing",
+    "authority": "credential",
+    "resource": "https://buy.example/",
+    "execution": {
+      "url": "https://buy.example/map/actions",
+      "resultUrlTemplate": "https://buy.example/map/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://buy.example/approvals/po-881"
+  },
+  "target": {
+    "id": "https://buy.example/proposals/po-881",
+    "revision": "2",
+    "title": "Design tool licence, 20 seats",
+    "digest": "sha-256:242267203e45d3ace6e2e0e2d81a2cdb77e77710f42151be3c6ec33a453ce244"
+  },
+  "details": {
+    "summary": "A 12-month licence for 20 seats of a design tool, from Figment Design Ltd.",
+    "requester": {
+      "name": "Priya Shah"
+    },
+    "authorizationDetails": [
+      {
+        "type": "https://buy.example/terms/purchase",
+        "actions": [
+          "purchase"
+        ],
+        "identifier": "po-881",
+        "supplier": "Figment Design Ltd",
+        "seats": 20,
+        "termMonths": 12,
+        "total": {
+          "currency": "EUR",
+          "amount": "4800.00"
+        }
+      }
+    ]
+  },
+  "operations": [
+    {
+      "id": "approve",
+      "name": "Approve",
+      "description": "Approve purchase order 881 as stated."
+    },
+    {
+      "id": "decline",
+      "name": "Decline",
+      "description": "Decline purchase order 881."
+    }
+  ]
+}

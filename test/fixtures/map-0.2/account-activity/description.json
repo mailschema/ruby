@@ -1,0 +1,54 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000010",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/account-activity",
+    "version": "0.1",
+    "contractDigest": "sha-256:91270db59b40b9d3b0ffb5b0a0c863ebf30b7ecc4d3f784297279ea1c2a83491"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://id.example/service",
+    "name": "Example Identity",
+    "authority": "credential",
+    "resource": "https://id.example/",
+    "execution": {
+      "url": "https://id.example/map/actions",
+      "resultUrlTemplate": "https://id.example/map/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://id.example/security/activity/9921"
+  },
+  "target": {
+    "id": "https://id.example/accounts/7781/activity/9921",
+    "revision": "1",
+    "title": "New sign-in from Chrome on Windows",
+    "digest": "sha-256:d3cccd9ebca114c26cff35880daf8017bae27dfa1ef8a6288cc0929355d02c64"
+  },
+  "details": {
+    "summary": "A new sign-in from Chrome on Windows.",
+    "occurredAt": "2026-09-25T07:41:00Z",
+    "account": "a•••@example.org",
+    "eventType": "https://schemas.openid.net/secevent/caep/event-type/session-established",
+    "observedFrom": {
+      "ip": "203.0.113.24",
+      "userAgent": "Chrome 141 on Windows",
+      "location": "Lisbon, Portugal"
+    }
+  },
+  "operations": [
+    {
+      "id": "confirm",
+      "name": "Confirm",
+      "description": "Confirm that you signed in."
+    },
+    {
+      "id": "report-unrecognized",
+      "name": "Report unrecognized",
+      "description": "Report that the sign-in was not you."
+    }
+  ]
+}

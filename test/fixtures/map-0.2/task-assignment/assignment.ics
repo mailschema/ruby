@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Example Tasks//MAP fixture//EN
+METHOD:REQUEST
+BEGIN:VTODO
+UID:link-check-3.6.9@tasks.example
+SEQUENCE:0
+DTSTAMP:20260925T080000Z
+DUE:20260930T170000Z
+SUMMARY:Check links in the 3.6.9 documentation
+ORGANIZER:mailto:docs@tasks.example
+ATTENDEE;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:link-checker@agents.example
+END:VTODO
+END:VCALENDAR

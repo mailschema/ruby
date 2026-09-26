@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailschema.org/schemas/account-activity-0.1.schema.json",
+  "title": "Account Activity 0.1 request",
+  "allOf": [
+    {
+      "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/request"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "const": "https://mailschema.org/types/account-activity"
+            },
+            "version": {
+              "const": "0.1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "confirm"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "report-unrecognized"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "note": {
+                  "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

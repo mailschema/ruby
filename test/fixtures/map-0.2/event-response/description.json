@@ -1,0 +1,54 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000004",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/event-response",
+    "version": "0.1",
+    "contractDigest": "sha-256:43ef4f683ae7f99b056c983439d84e2906aae25bbd6ccf0cefc199592fc8bdca"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://calendar.example.net/service",
+    "name": "Example Calendar",
+    "authority": "possession",
+    "execution": {
+      "url": "https://calendar.example.net/map/c/Wf2kR8xLq5Nv1Tz7Mb4Hc9Ds3Pj6Ya0G",
+      "resultUrlTemplate": "https://calendar.example.net/map/c/Wf2kR8xLq5Nv1Tz7Mb4Hc9Ds3Pj6Ya0G/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://calendar.example.net/events/workshop-2026-10"
+  },
+  "recipient": "alex@example.org",
+  "target": {
+    "id": "https://calendar.example.net/events/workshop-2026-10",
+    "revision": "2",
+    "title": "Design systems workshop",
+    "digest": "sha-256:8f0e5f23721afc145bd03629c9353659080ffbc397119aeae6d52c19be471616"
+  },
+  "details": {
+    "event": {
+      "uid": "workshop-2026-10@calendar.example.net"
+    },
+    "attendee": "mailto:alex@example.org"
+  },
+  "operations": [
+    {
+      "id": "accept",
+      "name": "Accept",
+      "description": "Attend the workshop."
+    },
+    {
+      "id": "decline",
+      "name": "Decline",
+      "description": "Do not attend the workshop."
+    },
+    {
+      "id": "respond-tentatively",
+      "name": "Respond tentatively",
+      "description": "Tentatively attend the workshop."
+    }
+  ]
+}

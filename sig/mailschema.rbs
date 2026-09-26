@@ -1,0 +1,92 @@
+# Mail Action Protocol 0.2 tooling.
+module Mailschema
+  type json = Hash[String, untyped] | Array[untyped] | String | Integer | Float | bool | nil
+  type document = Hash[String, untyped]
+  type input_error = Hash[String, String]
+
+  VERSION: String
+
+  PROFILE: String
+  CORE_SCHEMA: String
+  FORMS_SCHEMA: String
+  CONTRACT_FORMAT: String
+  CONTEXT: String
+  CONTRIBUTION_SCHEMA: String
+  ARTIFACTS: Hash[String, String]
+  APPROVAL_REASONS: Array[String]
+  PROBLEM_STATUS: Hash[String, Integer]
+  PROBLEM_TYPES: String
+  NON_TERMINAL_STATES: Array[String]
+  MAX_BYTES: Integer
+  MAX_DEPTH: Integer
+  EXACT_NUMBER: Integer
+
+  class Error < StandardError
+  end
+
+  class InvalidDocument < Error
+  end
+
+  class InvalidContract < Error
+  end
+
+  def self.parse: (String json) -> json
+  def self.canonicalize: (json value) -> String
+  def self.digest: (json value) -> String
+  def self.reached?: (Time now, untyped deadline, ?after: Numeric) -> bool
+
+  def self.artifact: (String url) -> String
+  def self.document: (String url) -> document
+
+  def self.map_errors: (untyped document) -> Array[String]
+  def self.description_errors: (untyped description) -> Array[String]
+  def self.request_errors: (untyped request) -> Array[String]
+  def self.result_errors: (untyped result) -> Array[String]
+  def self.problem_errors: (untyped problem) -> Array[String]
+  def self.request_id?: (untyped value) -> bool
+
+  def self.capability: (document description) -> String
+  def self.written_path: (String? url) -> String
+
+  def self.result: (document request, state: String, target: document, result_url: String, recorded_at: Time,
+                    ?output: document, ?reason: String?, ?approval_url: String?, ?actor: String?) -> document
+  def self.transition: (document result, state: String, recorded_at: Time, ?reason: String?, ?output: document) -> document
+  def self.problem: (String code, title: String, detail: String, ?request_id: String?, ?interaction_id: String?,
+                     ?result_url: String?, ?target: document?, ?errors: Array[input_error]?) -> document
+  def self.result_status: (document result) -> Integer
+  def self.json_request?: (String? content_type) -> bool
+  DESCRIPTION_MEDIA_TYPE: String
+  def self.description_part?: (String? media_type, String? profile_parameter) -> bool
+  def self.result_url: (document description, String request_id) -> String
+  def self.retain_until: (document description, Time recorded_at) -> Time
+  def self.settle: (document result, document description, Time now) -> document?
+
+  # A type contract an implementation vendors, verified by digest and compiled once.
+  class Contract
+    # A MAP problem a request earns before the service's own state is consulted.
+    class Problem < Data
+      attr_reader code: String
+      attr_reader title: String
+      attr_reader detail: String
+
+      def self.new: (String code, String title, String detail) -> instance
+                  | (code: String, title: String, detail: String) -> instance
+    end
+
+    attr_reader document: document
+    attr_reader digest: String
+    attr_reader request_schema: document
+
+    def initialize: (document contract, document request_schema, digest: String,
+                     ?dependencies: Hash[String, document]) -> void
+    def id: () -> String
+    def version: () -> String
+    def type_reference: () -> Hash[String, String]
+    def operation: (String? id) -> document?
+    def decision?: (String id) -> bool
+    def description_errors: (document description) -> Array[String]
+    def request_problem: (document description, document request, now: Time) -> Problem?
+    def input_errors: (document description, document request) -> Array[input_error]
+    def result_errors: (document result) -> Array[String]
+  end
+end

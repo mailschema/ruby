@@ -1,0 +1,109 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/account-activity",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "Account activity reported by the service, identified in the details.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "summary": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "occurredAt": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+      },
+      "account": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      },
+      "eventType": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/httpsIdentifier"
+      },
+      "observedFrom": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "ip": {
+            "type": "string",
+            "pattern": "^[0-9A-Fa-f.:]{2,45}$"
+          },
+          "userAgent": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "location": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          }
+        }
+      }
+    },
+    "required": ["summary", "occurredAt", "account"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/account-activity-0.1.schema.json",
+    "canonicalDigest": "sha-256:e5f65b11cafc864640b5d2210cb4a6a89d02e281ce5e6c7ed820893cb1e7c867"
+  },
+  "operations": [
+    {
+      "id": "confirm",
+      "effect": "Record that the account holder or their agent performed the activity.",
+      "authority": ["credential"],
+      "consequences": ["assertion"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "recognized": {
+                "const": true
+              }
+            },
+            "required": ["recognized"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "report-unrecognized",
+      "effect": "Report that the activity is not recognized. The service takes its protective steps.",
+      "authority": ["credential", "possession"],
+      "consequences": ["protection"],
+      "results": [
+        {
+          "state": "accepted",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "reportRecorded": {
+                "const": true
+              }
+            },
+            "required": ["reportRecorded"]
+          }
+        }
+      ]
+    }
+  ]
+}

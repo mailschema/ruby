@@ -1,0 +1,26 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001111",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000002",
+  "descriptionDigest": "sha-256:d28578beda1b3fb0706ceb258fb79b815d430a760ddd2fa5966734dd5ed1f241",
+  "type": {
+    "id": "https://mailschema.org/types/action-approval",
+    "version": "0.1",
+    "contractDigest": "sha-256:c7829a31570c74cebcb87cdaf6627641b0fb23cb77446cce825d68c94edf4c31"
+  },
+  "operation": "decline",
+  "state": "completed",
+  "target": {
+    "id": "https://buy.example/proposals/po-881",
+    "revision": "2",
+    "title": "Design tool licence, 20 seats",
+    "digest": "sha-256:242267203e45d3ace6e2e0e2d81a2cdb77e77710f42151be3c6ec33a453ce244"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://buy.example/map/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001111",
+  "actor": "agent-client-3",
+  "output": {
+    "decision": "declined"
+  }
+}

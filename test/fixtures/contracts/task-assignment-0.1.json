@@ -1,0 +1,140 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/task-assignment",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "An assigned to-do identified in the details. The target revision is its SEQUENCE and the target digest is the SHA-256 of the iCalendar part carried in the message.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "task": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "uid": {
+            "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "required": ["uid"]
+      },
+      "summary": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "due": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/dateTime"
+      },
+      "completionRequirements": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      }
+    },
+    "required": ["task", "summary"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/task-assignment-0.1.schema.json",
+    "canonicalDigest": "sha-256:ae44cba4881db26a71c850d35952907b4daad0de48e1e612e1a5cfe8b88fcf09"
+  },
+  "operations": [
+    {
+      "id": "accept",
+      "effect": "Record that the assignee accepts the task.",
+      "authority": ["credential"],
+      "consequences": ["commitment"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "participationStatus": {
+                "const": "accepted"
+              }
+            },
+            "required": ["participationStatus"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "effect": "Record that the assignee declines the task.",
+      "authority": ["credential"],
+      "consequences": ["refusal"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "participationStatus": {
+                "const": "declined"
+              }
+            },
+            "required": ["participationStatus"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "report-progress",
+      "effect": "Record the task's percent complete.",
+      "authority": ["credential"],
+      "consequences": ["record"],
+      "repeatable": true,
+      "results": [
+        {
+          "state": "accepted",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "progressRecorded": {
+                "const": true
+              }
+            },
+            "required": ["progressRecorded"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "report-completion",
+      "effect": "Record a completion report for the service to verify.",
+      "authority": ["credential"],
+      "consequences": ["assertion"],
+      "repeatable": true,
+      "results": [
+        {
+          "state": "accepted",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "completionRecorded": {
+                "const": true
+              }
+            },
+            "required": ["completionRecorded"]
+          }
+        }
+      ]
+    }
+  ]
+}

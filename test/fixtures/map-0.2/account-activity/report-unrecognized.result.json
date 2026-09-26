@@ -1,0 +1,26 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001911",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000010",
+  "descriptionDigest": "sha-256:3407464776024d53292e3d0dfce746f6198f7c92d6c5ddc3029d27510f8bf500",
+  "type": {
+    "id": "https://mailschema.org/types/account-activity",
+    "version": "0.1",
+    "contractDigest": "sha-256:91270db59b40b9d3b0ffb5b0a0c863ebf30b7ecc4d3f784297279ea1c2a83491"
+  },
+  "operation": "report-unrecognized",
+  "state": "accepted",
+  "target": {
+    "id": "https://id.example/accounts/7781/activity/9921",
+    "revision": "1",
+    "title": "New sign-in from Chrome on Windows",
+    "digest": "sha-256:d3cccd9ebca114c26cff35880daf8017bae27dfa1ef8a6288cc0929355d02c64"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://id.example/map/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001911",
+  "actor": "agent-client-3",
+  "output": {
+    "reportRecorded": true
+  }
+}

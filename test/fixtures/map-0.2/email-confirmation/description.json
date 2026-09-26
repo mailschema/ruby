@@ -1,0 +1,49 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.2.jsonld",
+  "@type": "MailAction",
+  "@id": "urn:uuid:01926a00-0000-7000-8000-000000000009",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "type": {
+    "id": "https://mailschema.org/types/email-confirmation",
+    "version": "0.1",
+    "contractDigest": "sha-256:f7ba22e7d20ae004d248655e2c744eb1a131b3d1b88de77525551ce70ac131e3"
+  },
+  "describedAt": "2026-09-25T08:00:00Z",
+  "expiresAt": "2026-10-02T08:00:00Z",
+  "service": {
+    "id": "https://accounts.example.com/service",
+    "name": "Example Developer Tools",
+    "authority": "possession",
+    "execution": {
+      "url": "https://accounts.example.com/map/c/Kc4nV7xP2mR9wL1tB5hQ8sD3fZ6yJ0aG",
+      "resultUrlTemplate": "https://accounts.example.com/map/c/Kc4nV7xP2mR9wL1tB5hQ8sD3fZ6yJ0aG/results/{requestId}",
+      "resultRetentionSeconds": 604800
+    },
+    "humanUrl": "https://accounts.example.com/signup/pending"
+  },
+  "recipient": "alex+devtools-7f3a@example.org",
+  "target": {
+    "id": "https://accounts.example.com/pending/signup-5520",
+    "revision": "1",
+    "title": "Confirm your new account",
+    "digest": "sha-256:8fcc87f86199cbd5c4316d65bdca185cf3a232ab1ed43454ec0dfacaa2cfd216"
+  },
+  "details": {
+    "origin": "https://devtools.example.com",
+    "address": "alex+devtools-7f3a@example.org",
+    "purpose": "account-creation",
+    "requestedAt": "2026-09-25T07:58:00Z"
+  },
+  "operations": [
+    {
+      "id": "confirm",
+      "name": "Confirm",
+      "description": "Confirm this address and create the account."
+    },
+    {
+      "id": "report-unrecognized",
+      "name": "Report unrecognized",
+      "description": "Report that you did not sign up."
+    }
+  ]
+}

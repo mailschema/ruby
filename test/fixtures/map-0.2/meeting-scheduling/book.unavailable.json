@@ -1,0 +1,24 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001401",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000005",
+  "descriptionDigest": "sha-256:0ac3b0399227ddbb80460ebf7b4f088960207e0b063dece1e7e0ce7639c7db5e",
+  "type": {
+    "id": "https://mailschema.org/types/meeting-scheduling",
+    "version": "0.1",
+    "contractDigest": "sha-256:e72f70f3b2c459802a61f2edb416a97f74763fc423eca3540d11f96068ed8f25"
+  },
+  "operation": "book",
+  "state": "failed",
+  "target": {
+    "id": "https://hiring.example.net/interviews/8814",
+    "revision": "1",
+    "title": "Interview for the platform engineer role",
+    "digest": "sha-256:634e324149d969083a079d8881ffd21db0571ea82f7f7515eba33a494820a5f6"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://hiring.example.net/map/c/Zt5mQ1vB8nK3xR7wL2pH9sD4fG6jC0aY/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001401",
+  "reason": "unavailable",
+  "output": {}
+}

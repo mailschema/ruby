@@ -1,0 +1,87 @@
+{
+  "kind": "MapTypeContract",
+  "id": "https://mailschema.org/types/information-request",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "target": "A request for information at the exact revision the description names. The details define its fields.",
+  "dependencies": [
+    {
+      "url": "https://mailschema.org/schemas/map-0.2.schema.json",
+      "canonicalDigest": "sha-256:e7327bd379f75e62e9b6ea387ac80d470e1acf5b3c10060739f43231bfa373d3"
+    },
+    {
+      "url": "https://mailschema.org/schemas/forms-0.1.schema.json",
+      "canonicalDigest": "sha-256:5a9ee18da6422bf9641cc1ff7a87a9783a9cb8c1ad34e8bdaadd775e602ebb6a"
+    }
+  ],
+  "detailsSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "purpose": {
+        "$ref": "https://mailschema.org/schemas/map-0.2.schema.json#/$defs/nonBlank",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "fields": {
+        "$ref": "https://mailschema.org/schemas/forms-0.1.schema.json#/$defs/fields"
+      }
+    },
+    "required": ["purpose", "fields"]
+  },
+  "requestSchema": {
+    "url": "https://mailschema.org/schemas/information-request-0.1.schema.json",
+    "canonicalDigest": "sha-256:75275601985f6afd1b10954929254309d7ba6b6ac490207755cca0dd3bc23522"
+  },
+  "operations": [
+    {
+      "id": "submit-response",
+      "effect": "Record values for the requested fields.",
+      "authority": ["credential", "possession"],
+      "consequences": ["disclosure"],
+      "fieldBindings": [
+        {
+          "input": "/values",
+          "fields": "/fields"
+        }
+      ],
+      "results": [
+        {
+          "state": "accepted",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "responseRecorded": {
+                "const": true
+              }
+            },
+            "required": ["responseRecorded"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "effect": "Record that the recipient will not provide the information.",
+      "authority": ["credential", "possession"],
+      "consequences": ["refusal"],
+      "results": [
+        {
+          "state": "completed",
+          "outputSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "declined"
+              }
+            },
+            "required": ["decision"]
+          }
+        }
+      ]
+    }
+  ]
+}

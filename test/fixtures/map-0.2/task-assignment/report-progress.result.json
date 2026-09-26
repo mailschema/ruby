@@ -1,0 +1,26 @@
+{
+  "kind": "MapResult",
+  "profile": "https://mailschema.org/profiles/map/0.2",
+  "requestId": "urn:uuid:01926a00-0000-7000-8000-000000001621",
+  "interactionId": "urn:uuid:01926a00-0000-7000-8000-000000000007",
+  "descriptionDigest": "sha-256:62fe35c7b5af6750ca211834928f9555d0a298bd13ea926c7f52d61f999e501f",
+  "type": {
+    "id": "https://mailschema.org/types/task-assignment",
+    "version": "0.1",
+    "contractDigest": "sha-256:1e30b1cb2fdeb63622a51a49b2782662a4103b47cbcc5e477ed4c25758498f45"
+  },
+  "operation": "report-progress",
+  "state": "accepted",
+  "target": {
+    "id": "https://tasks.example/tasks/link-check-3.6.9",
+    "revision": "0",
+    "title": "Check links in the 3.6.9 documentation",
+    "digest": "sha-256:8ca7d3f2097105660a0ed3abcafc91a844aaae316227b84295afa8d993112d45"
+  },
+  "recordedAt": "2026-09-25T09:00:00.000Z",
+  "resultUrl": "https://tasks.example/map/results/urn%3Auuid%3A01926a00-0000-7000-8000-000000001621",
+  "actor": "agent-client-3",
+  "output": {
+    "progressRecorded": true
+  }
+}
