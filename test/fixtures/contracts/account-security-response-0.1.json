@@ -1,0 +1,113 @@
+{
+  "id": "https://mailschema.org/types/account-security-response",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.3",
+  "name": "Account Security Response",
+  "summary": "Record that a recipient does not recognize a specific account event, without changing account access.",
+  "requirements": [
+    "The event MUST be a concrete event in the addressed principal's service account. The terms version MUST bind that account, event identifier, occurrence time, activity description, and presented device or location information.",
+    "The report MUST be recorded as the recipient's unverified protective signal. It MUST NOT claim that fraud occurred or that a device or location was verified merely because the recipient submitted the report.",
+    "The report MUST NOT by itself lock or delete the account, revoke sessions or credentials, change recovery settings, transfer assets, disclose protected data, or execute another consequential action. Any such response requires a separate authenticated service process and its own authorization.",
+    "The contract MUST NOT offer a recognize, authorize-login, or approve-device operation. Recognizing an event is not authorization for a new session.",
+    "For capability use, the event report MUST expire within 259200 seconds of issuedAt and no later than expiresAt. A copied capability can submit only the same report for the same event. It cannot supply a message or identify another event.",
+    "The email SHOULD minimize device and location information. The human route MUST authenticate the principal before disclosing protected event details beyond the minimal email preview."
+  ],
+  "detailsSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "account",
+      "event"
+    ],
+    "properties": {
+      "account": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "maxLength": 2048
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          }
+        }
+      },
+      "event": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "occurredAt",
+          "activity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "maxLength": 2048
+          },
+          "occurredAt": {
+            "type": "string",
+            "minLength": 1,
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+          },
+          "activity": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "device": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "location": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          }
+        }
+      }
+    }
+  },
+  "operations": [
+    {
+      "id": "report-unrecognized",
+      "name": "Report unrecognized activity",
+      "semantics": "Record that the recipient reports this event as unrecognized, without executing account remediation or making a verified fraud assertion.",
+      "effects": [
+        "https://mailschema.org/effects/protection",
+        "https://mailschema.org/effects/state"
+      ],
+      "bindings": [
+        "credential",
+        "capability"
+      ],
+      "actors": [
+        "human",
+        "agent"
+      ],
+      "exactTerms": true,
+      "inputSchema": null,
+      "outcomes": {
+        "reported": "The service recorded the protective report; no account remediation is implied."
+      },
+      "capability": {
+        "kind": "protective-report",
+        "maxLifetimeSeconds": 259200
+      }
+    }
+  ]
+}

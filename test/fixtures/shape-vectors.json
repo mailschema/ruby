@@ -1,0 +1,311 @@
+[
+  {
+    "id": "valid-campaign-send-approval",
+    "example": "campaign-send-approval",
+    "edits": [],
+    "valid": true
+  },
+  {
+    "id": "valid-publication-approval",
+    "example": "publication-approval",
+    "edits": [],
+    "valid": true
+  },
+  {
+    "id": "valid-email-address-confirmation",
+    "example": "email-address-confirmation",
+    "edits": [],
+    "valid": true
+  },
+  {
+    "id": "valid-account-security-response",
+    "example": "account-security-response",
+    "edits": [],
+    "valid": true
+  },
+  {
+    "id": "old-profile",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/profile",
+        "value": "https://mailschema.org/profiles/map/0.2"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "context-array",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/@context",
+        "value": [
+          "https://mailschema.org/contexts/map-0.3.jsonld"
+        ]
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "inline-context",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/@context",
+        "value": {}
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "unbound-contract",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/type/contractDigest",
+        "value": "sha-256:123"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "core-method",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/method",
+        "value": "POST"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "email-endpoint",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/operations/0/url",
+        "value": "https://evil.example"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "operation-input",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/operations/0/input",
+        "value": {
+          "approve": true
+        }
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "empty-operations",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/operations",
+        "value": []
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "unknown-detail",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/details/endpoint",
+        "value": "https://evil.example"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "audience-zero",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/details/audience/count",
+        "value": 0
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "audience-fraction",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/details/audience/count",
+        "value": 1.5
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "schedule-no-instant",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/details/schedule",
+        "value": {
+          "mode": "scheduled"
+        }
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "terms-not-string",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/terms/version",
+        "value": 42
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "insecure-human",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/human/url",
+        "value": "http://service.example/p7"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "missing-audience-revision",
+    "example": "campaign-send-approval",
+    "edits": [
+      {
+        "op": "remove",
+        "path": "/details/audience/revision"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "restricted-destination-no-audience",
+    "example": "publication-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/details/destinations/0/visibility",
+        "value": "restricted"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "public-destination-with-audience",
+    "example": "publication-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/details/destinations/0/audience",
+        "value": {
+          "id": "urn:example:readers",
+          "revision": "r1"
+        }
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "confirmation-login-purpose",
+    "example": "email-address-confirmation",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/details/purpose",
+        "value": "login"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "capability-extra-input",
+    "example": "email-address-confirmation",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/operations/0/capability/body",
+        "value": {
+          "x": 1
+        }
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "security-missing-event",
+    "example": "account-security-response",
+    "edits": [
+      {
+        "op": "remove",
+        "path": "/details/event"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "ip-literal-service-origin",
+    "example": "publication-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/service/id",
+        "value": "https://192.0.2.10"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "human-url-fragment",
+    "example": "publication-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/human/url",
+        "value": "https://service.example/review/p7#approve"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "id": "issued-at-leap-second",
+    "example": "publication-approval",
+    "edits": [
+      {
+        "op": "replace",
+        "path": "/issuedAt",
+        "value": "2026-12-31T23:59:60Z"
+      }
+    ],
+    "valid": false
+  }
+]

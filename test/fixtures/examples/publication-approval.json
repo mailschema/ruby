@@ -1,0 +1,61 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.3.jsonld",
+  "@type": "MailAction",
+  "profile": "https://mailschema.org/profiles/map/0.3",
+  "type": {
+    "id": "https://mailschema.org/types/publication-approval",
+    "version": "0.1",
+    "contractDigest": "sha-256:de91a49de4cba91209be253456e7c56709791fff877a060560d4eada0cc9468c"
+  },
+  "@id": "urn:uuid:0199a6c2-4b1e-7c3a-9d2e-5f8a1b2c3d41",
+  "issuedAt": "2026-10-02T08:00:00Z",
+  "expiresAt": "2026-10-03T08:00:00Z",
+  "inLanguage": "en",
+  "service": {
+    "id": "https://service.example",
+    "tenant": "urn:example:tenant:7"
+  },
+  "recipient": "owner@example.net",
+  "subject": {
+    "id": "urn:example:object:42",
+    "title": "Publish the getting started guide"
+  },
+  "terms": {
+    "id": "urn:example:proposal:p7",
+    "version": "p7-r4"
+  },
+  "human": {
+    "url": "https://service.example/review/p7"
+  },
+  "details": {
+    "summary": "Publish the approved getting started guide.",
+    "requester": "Documentation editor",
+    "content": {
+      "id": "urn:example:content:42",
+      "revision": "r4",
+      "title": "Getting started",
+      "digest": "sha-256:4ffdf504c44a73a059c09c9cb30362c04f593b3af405b83bc084bb045067f95c"
+    },
+    "destinations": [
+      {
+        "id": "https://docs.service.example/guide",
+        "account": "urn:example:account:7",
+        "visibility": "public"
+      }
+    ],
+    "schedule": {
+      "mode": "immediate"
+    }
+  },
+  "operations": [
+    {
+      "id": "approve"
+    },
+    {
+      "id": "decline"
+    },
+    {
+      "id": "request-changes"
+    }
+  ]
+}

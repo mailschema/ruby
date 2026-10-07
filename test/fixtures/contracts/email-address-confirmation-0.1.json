@@ -1,0 +1,85 @@
+{
+  "id": "https://mailschema.org/types/email-address-confirmation",
+  "version": "0.1",
+  "profile": "https://mailschema.org/profiles/map/0.3",
+  "name": "Email Address Confirmation",
+  "summary": "Confirm access to a mailbox for a principal-initiated communication request, without creating a signed-in session or granting account authority.",
+  "requirements": [
+    "The sole permitted purpose is communication-address: validating a mailbox for future communications requested by its controller. Confirmation MUST NOT itself send a campaign or disclose private data. Subsequent communication requires its own applicable consent and service permission.",
+    "The service origin, recipient, details.mailbox, details.requestId, and details.purpose MUST match a request recorded independently when the principal initiated it. details.mailbox MUST identify the same controlled mailbox as recipient. The initiator MUST retain enough session or authenticated request state to establish this match; the email cannot create that state.",
+    "The terms version MUST bind the mailbox, request identifier, purpose, and any associated non-authentication account context. Changes require a new request, interaction, and confirmation.",
+    "Confirmation MUST NOT authenticate a session, reset a password, link or take over an account, add a recovery address, grant access, or serve as an authentication factor. Those flows require their own established security mechanisms.",
+    "The interaction and capability MUST expire within 86400 seconds of issuedAt. The service MUST invalidate confirmation authority on first successful use. A duplicate MAY acknowledge prior processing but MUST NOT revalidate or extend confirmation.",
+    "The human route MUST establish the independently recorded initiation context and require an explicit unsafe-method submission. Fetching the email link MUST NOT confirm the mailbox or consume confirmation authority.",
+    "The 24-hour and invalidation-on-use limits adopt the design of NIST SP 800-63A-4 section 3.8 for email confirmation codes. This contract does not assert that every email validation use case falls within that publication's identity-proofing scope."
+  ],
+  "detailsSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mailbox",
+      "requestId",
+      "requestedAt",
+      "purpose",
+      "serviceName"
+    ],
+    "properties": {
+      "mailbox": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 320
+      },
+      "requestId": {
+        "type": "string",
+        "minLength": 1,
+        "format": "uri",
+        "maxLength": 2048,
+        "description": "Identifier recorded in the initiation flow; an email-supplied identifier alone is not correlation evidence."
+      },
+      "requestedAt": {
+        "type": "string",
+        "minLength": 1,
+        "format": "date-time",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+      },
+      "purpose": {
+        "const": "communication-address"
+      },
+      "serviceName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2048,
+        "description": "Display label only. The service origin identifies the destination."
+      }
+    }
+  },
+  "operations": [
+    {
+      "id": "confirm",
+      "name": "Confirm address",
+      "semantics": "Confirm that the principal controls the addressed mailbox for the independently matched communication request, once only. This is not a login or grant of account access.",
+      "effects": [
+        "https://mailschema.org/effects/assertion",
+        "https://mailschema.org/effects/state"
+      ],
+      "bindings": [
+        "credential",
+        "capability"
+      ],
+      "actors": [
+        "human",
+        "agent"
+      ],
+      "exactTerms": true,
+      "inputSchema": null,
+      "outcomes": {
+        "confirmed": "The service recorded the requested mailbox confirmation."
+      },
+      "capability": {
+        "kind": "address-confirmation",
+        "maxLifetimeSeconds": 86400
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.3.jsonld",
+  "@type": "MailAction",
+  "profile": "https://mailschema.org/profiles/map/0.3",
+  "type": {
+    "id": "https://mailschema.org/types/campaign-send-approval",
+    "version": "0.1",
+    "contractDigest": "sha-256:de3c88a0712adb1d0c6e82f437b825c83520d8e1c44c7b032a2cfcfe5ce55731"
+  },
+  "@id": "urn:uuid:0199a6c2-4b1e-7c3a-9d2e-5f8a1b2c3d40",
+  "issuedAt": "2026-10-02T08:00:00Z",
+  "expiresAt": "2026-10-03T08:00:00Z",
+  "inLanguage": "en",
+  "service": {
+    "id": "https://service.example",
+    "tenant": "urn:example:tenant:7"
+  },
+  "recipient": "owner@example.net",
+  "subject": {
+    "id": "urn:example:campaign:18",
+    "title": "Send product update"
+  },
+  "terms": {
+    "id": "urn:example:proposal:c18",
+    "version": "c18-r2"
+  },
+  "human": {
+    "url": "https://service.example/review/c18"
+  },
+  "details": {
+    "summary": "The product update is ready to send to the newsletter audience. Please review the email and approve this send.",
+    "requester": "Campaign editor",
+    "content": {
+      "id": "urn:example:content:18",
+      "revision": "r2",
+      "digest": "sha-256:86d8e5d2331a2c3bd211a71adb79149b644104ccbb7a4425b7ac5b26e94ef06d",
+      "title": "Product update"
+    },
+    "sender": {
+      "mailbox": "news@service.example",
+      "name": "Service newsletter"
+    },
+    "audience": {
+      "id": "urn:example:audience:9",
+      "revision": "snapshot-3",
+      "count": 4210,
+      "label": "Newsletter subscribers"
+    },
+    "schedule": {
+      "mode": "immediate"
+    }
+  },
+  "operations": [
+    {
+      "id": "approve"
+    },
+    {
+      "id": "decline"
+    },
+    {
+      "id": "request-changes"
+    }
+  ]
+}

@@ -3,355 +3,246 @@
 require "test_helper"
 
 class ContractTest < Minitest::Test
-  ZERO = "sha-256:#{"0" * 64}".freeze
-  ELSEWHERE = "https://example.com/x.json"
-  UNPUBLISHED = "https://mailschema.org/schemas/unpublished-0.1.schema.json"
+  EFFECTS = Mailschema::EFFECTS
 
-  def test_type_reference_is_the_digest_of_the_contract
-    Fixtures.types.each do |slug|
-      contract = Fixtures.contract(slug)
-      assert_equal Mailschema.digest(Fixtures.contract_files(slug).first), contract.digest, slug
-      assert_equal Fixtures.description(slug).fetch("type"), contract.type_reference, slug
+  def test_identifies_each_published_contract_by_the_digest_its_example_carries
+    assert_equal %w[account-security-response campaign-send-approval email-address-confirmation publication-approval],
+                 Fixtures.contracts.keys.sort
+    Fixtures.contracts.each do |slug, contract|
+      assert_equal Fixtures.example(slug).dig("type", "contractDigest"), contract.digest, slug
+      assert_equal Mailschema.digest(Fixtures.contract_document(slug)), contract.digest, slug
+      assert_equal [], Mailschema.contract_errors(Fixtures.contract_document(slug)), slug
     end
   end
 
-  def test_a_contract_is_refused_unless_it_is_the_one_pinned
-    document, schema = Fixtures.contract_files("meeting-scheduling")
-    error = assert_raises(Mailschema::InvalidContract) { Mailschema::Contract.new(document, schema, digest: ZERO) }
-    assert_match(/not the pinned/, error.message)
-    changed = deep_copy(document).merge("title" => "Changed")
-    assert_raises(Mailschema::InvalidContract) do
-      Mailschema::Contract.new(changed, schema, digest: Fixtures.pinned("meeting-scheduling"))
+  def test_keeps_a_frozen_copy
+    document = Fixtures.contract_document("publication-approval")
+    contract = Mailschema::Contract.new(document)
+    document["name"] = "Changed"
+    assert_equal "Publication Approval", contract.document["name"]
+    assert_predicate contract.document, :frozen?
+    assert_predicate contract.document.dig("operations", 0, "effects"), :frozen?
+    assert_equal "https://mailschema.org/types/publication-approval", contract.id
+    assert_equal "0.1", contract.version
+    assert_equal "approve", contract.operation("approve")["id"]
+    assert_nil contract.operation("publish")
+  end
+
+  def test_checks_operation_input_against_the_operation
+    contract = Fixtures.contracts.fetch("publication-approval")
+    assert_equal [], contract.input_errors("approve")
+    assert_equal [], contract.input_errors("approve", nil)
+    assert_equal ["/input: this operation accepts no input"], contract.input_errors("approve", {})
+    assert_equal ["/operation: publish is not an operation of this contract"], contract.input_errors("publish")
+    refute_empty contract.input_errors("request-changes", {})
+    assert(contract.input_errors("request-changes", {}).all? { |error| error.start_with?("/input: ") })
+    assert_equal [], contract.input_errors("request-changes", { "comment" => "Use the approved title." })
+  end
+
+  def test_reports_details_errors_inside_the_description
+    contract = Fixtures.contracts.fetch("campaign-send-approval")
+    details = Fixtures.example("campaign-send-approval")["details"]
+    assert_equal [], contract.details_errors(details)
+    details["audience"]["count"] = 0
+    errors = contract.details_errors(details)
+    assert_equal 1, errors.size
+    assert_match %r{\A/details/audience/count: }, errors.first
+  end
+
+  REFUSALS = {
+    "repeats an operation" => [->(c) { c["operations"] << c["operations"][0] }, /unique/],
+    "gives a capability another effect" => [
+      ->(c) { c["operations"][1]["effects"] << "#{EFFECTS}communication" }, /declares exactly/
+    ],
+    "gives a capability a longer lifetime" => [
+      ->(c) { c["operations"][1]["capability"]["maxLifetimeSeconds"] = 604_801 }, /604800/
+    ],
+    "references a remote schema" => [
+      ->(c) { c["detailsSchema"] = { "$ref" => "https://untrusted.example/schema.json" } },
+      /JSON Pointer to a schema within this schema/
+    ],
+    "uses a keyword outside MAP" => [
+      ->(c) { c["detailsSchema"] = { "type" => "object", "$dynamicRef" => "#meta" } },
+      /\$dynamicRef is not a MAP schema keyword/
+    ],
+    "asserts a format outside MAP" => [
+      ->(c) { c["detailsSchema"] = { "type" => "string", "format" => "hostname" } }, /format is one of/
+    ],
+    "uses a pattern engines read differently" => [
+      ->(c) { c["detailsSchema"] = { "type" => "string", "pattern" => "^\\s+$" } }, /the escape \\s/
+    ],
+    "moves the dialect inside a schema" => [
+      lambda do |c|
+        c["detailsSchema"] = { "properties" => { "a" => { "$schema" => "https://json-schema.org/draft/2020-12/schema" } } }
+      end,
+      /at the schema's root only/
+    ],
+    "uses a fractional multipleOf" => [
+      ->(c) { c["detailsSchema"] = { "type" => "number", "multipleOf" => 0.5 } }, /multipleOf is an integer/
+    ],
+    "references a definition it does not have" => [
+      ->(c) { c["detailsSchema"] = { "$defs" => { "unused" => { "$ref" => "#/$defs/missing" } }, "type" => "object" } },
+      %r{\A/detailsSchema/\$defs/unused: \$ref is a JSON Pointer to a schema within this schema\z}
+    ],
+    "is not valid JSON Schema" => [
+      ->(c) { c["detailsSchema"] = { "type" => "string", "minLength" => -1 } }, %r{\A/detailsSchema: }
+    ],
+    "gives an input schema an unportable pattern" => [
+      lambda do |c|
+        c["operations"][2]["inputSchema"] = { "type" => "object", "patternProperties" => { "^a.b$" => {} } }
+      end,
+      %r{/operations/2/inputSchema: pattern "\^a\.b\$" uses an unescaped dot}
+    ]
+  }.freeze
+
+  REFUSALS.each do |name, (mutate, reason)|
+    define_method("test_refuses_a_contract_that_#{name.tr(" ", "_")}") do
+      contract = Fixtures.contract_document("campaign-send-approval")
+      mutate.call(contract)
+      assert_match reason, Mailschema.contract_errors(contract).join("\n")
+      error = assert_raises(Mailschema::InvalidDocument) { Mailschema::Contract.new(contract) }
+      assert_equal "The value is not a MAP 0.3 type contract.", error.message
+      assert_equal Mailschema.contract_errors(contract), error.errors
     end
   end
 
-  # Each contract here is pinned by its own digest, so the rule itself must refuse it.
-  def test_contracts_that_break_a_rule_are_refused_even_when_pinned
-    document, schema = Fixtures.contract_files("meeting-scheduling")
+  def test_resolves_references_as_json_pointers_within_the_schema
     {
-      "a dependency digest" => [->(c, _) { c["dependencies"][0]["canonicalDigest"] = ZERO }, /pinned digest of/],
-      "an unpinned core" => [->(c, _) { c["dependencies"].reject! { |d| d["url"] == Mailschema::CORE_SCHEMA } },
-                             /core schema must be pinned/],
-      "an unknown dependency" => [->(c, _) { c["dependencies"] << { "url" => UNPUBLISHED, "canonicalDigest" => ZERO } },
-                                  /unknown dependency/],
-      "a dependency outside MailSchema" => [
-        ->(c, _) { c["dependencies"] << { "url" => ELSEWHERE, "canonicalDigest" => ZERO } }, /invalid type contract/
-      ],
-      "an unpinned reference" => [->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "$ref" => ELSEWHERE } },
-                                  /not a pinned dependency/],
-      "the request schema" => [->(_, s) { s["title"] = "Changed" }, /request schema digest differs/],
-      "another profile" => [->(c, _) { c["profile"] = "https://mailschema.org/profiles/map/0.1" }, /profile/],
-      "the contract format" => [->(c, _) { c.delete("operations") }, /invalid type contract/],
-      "a duplicate operation" => [->(c, _) { c["operations"] << c["operations"].first }, /duplicate operation/],
-      "a local reference" => [->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "$ref" => "#/$defs/x" } },
-                              /not a pinned dependency/],
-      "a reference that does not resolve" => [
-        ->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "$ref" => "#{Mailschema::CORE_SCHEMA}#/$defs/none" } },
-        /does not name a schema/
-      ],
-      "a pattern that does not compile" => [
-        ->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "type" => "string", "pattern" => "^[^]$" } },
-        /does not compile/
-      ],
-      "a property pattern that does not compile" => [
-        ->(c, _) { c["operations"][0]["results"][0]["outputSchema"]["patternProperties"] = { "(" => {} } },
-        /not valid JSON Schema|does not compile/
-      ],
-      "an anchor reference" => [
-        ->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "$ref" => "#{Mailschema::CORE_SCHEMA}#anchor" } },
-        /names an anchor/
-      ],
-      "a reference to a number" => [
-        lambda do |c, _|
-          c["detailsSchema"]["properties"]["extra"] =
-            { "$ref" => "#{Mailschema::CORE_SCHEMA}#/$defs/description/properties/service/properties/name/maxLength" }
-        end,
-        /does not name a schema/
-      ],
-      "a reference to an array" => [
-        lambda do |c, _|
-          c["detailsSchema"]["properties"]["extra"] = { "$ref" => "#{Mailschema::CORE_SCHEMA}#/$defs/description/required" }
-        end,
-        /does not name a schema/
-      ],
-      "a dynamic reference" => [
-        ->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "$dynamicRef" => "#meta" } },
-        /\$dynamicRef is not pinned by any digest/
-      ],
-      "a percent-encoded pointer" => [
-        lambda do |c, _|
-          c["detailsSchema"]["properties"]["extra"] = { "$ref" => "#{Mailschema::CORE_SCHEMA}#/$defs%2FnonBlank" }
-        end,
-        /not a plain JSON Pointer/
-      ],
-      "a nested $id" => [
-        lambda do |c, _|
-          c["detailsSchema"]["properties"]["extra"] = { "$id" => Mailschema::CORE_SCHEMA, "type" => "string" }
-        end,
-        /nested \$id/
-      ],
-      "a nested $schema" => [
-        lambda do |c, _|
-          c["detailsSchema"]["properties"]["extra"] =
-            { "$schema" => "http://json-schema.org/draft-07/schema#", "type" => "string" }
-        end,
-        /nested \$schema/
-      ],
-      "a request schema in another dialect" => [
-        ->(_, s) { s["$schema"] = "http://json-schema.org/draft-07/schema#" },
-        /declare JSON Schema 2020-12/
-      ],
-      "an autocomplete of the contract's own" => [
-        ->(c, _) { c["detailsSchema"]["properties"]["properties"] = { "type" => "string", "autocomplete" => "email" } },
-        /autocomplete belongs/
-      ],
-      "an $id at the details root" => [
-        ->(c, _) { c["detailsSchema"]["$id"] = "https://example.com/d.json" },
-        /nested \$id/
-      ],
-      "a type list" => [
-        ->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "type" => %w[string null] } },
-        /one type/
-      ],
-      "a reference that is not a string" => [
-        ->(c, _) { c["detailsSchema"]["properties"]["extra"] = { "$ref" => 5 } },
-        /not a string|invalid type contract/
-      ],
-      "a malformed keyword" => [
-        ->(c, _) { c["operations"][0]["results"][0]["outputSchema"]["multipleOf"] = 0 },
-        /not valid JSON Schema/
-      ],
-      "a reference to a map of properties" => [
-        lambda do |c, _|
-          c["detailsSchema"]["properties"]["extra"] = { "$ref" => "#{Mailschema::CORE_SCHEMA}#/$defs/description/properties" }
-        end,
-        /does not resolve|does not name a schema/
-      ]
-    }.each do |name, (mutate, message)|
-      contract = deep_copy(document)
-      request_schema = deep_copy(schema)
-      mutate.call(contract, request_schema)
-      error = assert_raises(Mailschema::InvalidContract, name) do
-        Mailschema::Contract.new(contract, request_schema, digest: Mailschema.digest(contract))
-      end
-      assert_match message, error.message, name
+      "#" => true,
+      "#/$defs/a~1b" => true,
+      "#/allOf/0" => true,
+      "#/" => false,
+      "#/allOf/1" => false,
+      "#/$defs/a/b" => false,
+      # A pointer to a value that is not a schema names no schema.
+      "#/type" => false
+    }.each do |ref, valid|
+      contract = Fixtures.contract_document("campaign-send-approval")
+      contract["detailsSchema"].merge!("$defs" => { "a/b" => { "type" => "string" } }, "allOf" => [true])
+      contract["detailsSchema"]["properties"]["summary"] = { "$ref" => ref }
+      expected = ["/detailsSchema/properties/summary: $ref is a JSON Pointer to a schema within this schema"]
+      assert_equal valid ? [] : expected, Mailschema.contract_errors(contract), ref
     end
   end
 
-  # A reference may name a schema inside an array, as RFC 6901 allows.
-  def test_a_reference_through_an_array_loads
-    document, schema = Fixtures.contract_files("meeting-scheduling")
-    document["detailsSchema"]["properties"]["extra"] = { "$ref" => "#{Mailschema::CORE_SCHEMA}#/$defs/description/allOf/0" }
-    assert Mailschema::Contract.new(document, schema, digest: Mailschema.digest(document))
-  end
-
-  def test_contracts_are_frozen_copies
-    document, schema = Fixtures.contract_files("content-review")
-    contract = Mailschema::Contract.new(document, schema, digest: Fixtures.pinned("content-review"))
-    document["title"] = "Changed"
-    refute_equal "Changed", contract.document["title"]
-    assert contract.document.frozen?
-    assert contract.document.fetch("operations").first.frozen?
-  end
-
-  def test_decisions_and_repeatable_operations
-    contract = Fixtures.contract("content-review")
-    assert contract.decision?("approve")
-    refute contract.decision?("request-changes")
-    assert_raises(ArgumentError) { contract.decision?("publish") }
-  end
-
-  def test_description_rules
-    contract = Fixtures.contract("content-review")
-    base = Fixtures.description("content-review")
+  def test_refuses_a_reference_that_never_moves_into_the_value
     {
-      "an operation offered twice" => ->(d) { d["operations"] << d["operations"].first },
-      "reversed dates" => ->(d) { d["expiresAt"] = d["describedAt"] },
-      "another contract" => ->(d) { d["type"]["contractDigest"] = ZERO },
-      "possession for a credential operation" => lambda do |d|
-        d["service"]["authority"] = "possession"
-        d["service"].delete("resource")
-        d["recipient"] = "alex@example.org"
-      end,
-      "details the contract refuses" => ->(d) { d["details"] = { "unknown" => 1 } },
-      "an operation id with a line break" => ->(d) { d["operations"][0]["id"] = "approve\nevil" }
-    }.each do |name, mutate|
-      description = deep_copy(base)
-      mutate.call(description)
-      refute_empty contract.description_errors(description), name
+      { "type" => "object", "properties" => { "a" => { "$ref" => "#/properties/a" } } } => false,
+      { "$ref" => "#" } => false,
+      { "type" => "object", "allOf" => [{ "$ref" => "#" }] } => false,
+      { "type" => "object",
+        "$defs" => { "a" => { "$ref" => "#/$defs/b" }, "b" => { "anyOf" => [{ "$ref" => "#/$defs/a" }] } },
+        "properties" => { "x" => { "$ref" => "#/$defs/a" } } } => false,
+      { "type" => "object", "$defs" => { "a" => { "$ref" => "#/$defs/b" }, "b" => { "$ref" => "#/$defs/a" } } } => true,
+      { "type" => "object", "properties" => { "a" => { "$ref" => "#" } } } => true
+    }.each do |schema, valid|
+      contract = Fixtures.contract_document("campaign-send-approval").merge("detailsSchema" => schema)
+      expected = valid ? [] : ["/detailsSchema: $ref leads back without moving into the value"]
+      assert_equal expected, Mailschema.contract_errors(contract), schema.inspect
+      Mailschema::Contract.new(contract).details_errors({ "a" => { "a" => {} } }) if valid
     end
   end
 
-  # Without a contract, a description can be checked against the core alone.
-  def test_descriptions_of_unknown_types_meet_the_core
-    description = Fixtures.description("content-review")
-    description["type"] = description["type"].merge("id" => "https://types.example/unknown", "contractDigest" => ZERO)
-    assert_empty Mailschema.description_errors(description)
-    refute_empty Fixtures.contract("content-review").description_errors(description)
-    refute_empty Mailschema.description_errors(description.merge("expiresAt" => "2026-10-02 08:00:00Z"))
-  end
-
-  def test_request_problems_come_before_state_and_input
-    contract = Fixtures.contract("content-review")
-    description = Fixtures.description("content-review")
-    request = Fixtures.json("map-0.2/content-review/approve.request.json")
-    expires_at = Time.iso8601(description.fetch("expiresAt"))
-    before = expires_at - 1
-    code = lambda do |changes = {}, now: before, offered: description|
-      contract.request_problem(offered, request.merge(changes), now:)&.code
+  # MAP's rules are the only checks beyond JSON Schema itself: no validator's own strictness.
+  def test_accepts_any_valid_json_schema_within_the_map_rules
+    [
+      { "properties" => { "a" => { "minLength" => 1 } } },
+      { "type" => %w[string number] },
+      { "if" => { "type" => "string" } },
+      { "type" => "array", "prefixItems" => [{ "type" => "string" }] },
+      { "type" => "object", "properties" => { "ab" => {} }, "patternProperties" => { "^a" => {} } },
+      { "type" => "array", "minContains" => 2 },
+      { "type" => "object", "allOf" => [{ "type" => "number" }] }
+    ].each do |schema|
+      contract = Fixtures.contract_document("campaign-send-approval").merge("detailsSchema" => schema)
+      assert_equal [], Mailschema.contract_errors(contract), schema.inspect
     end
-    assert_nil code.call
-    assert_equal "unsupported-type", code.call({ "type" => request["type"].merge("version" => "9.9") })
-    assert_equal "unsupported-type", code.call({ "type" => request["type"].merge("contractDigest" => ZERO) })
-    assert_equal "unsupported-operation", code.call({ "operation" => "publish" })
-    withheld = deep_copy(description).tap { |d| d["operations"].reject! { |offer| offer["id"] == "approve" } }
-    assert_equal "unsupported-operation", code.call(offered: withheld)
-    assert_equal "expired-interaction", code.call(now: expires_at)
-    assert_equal "unsupported-type", code.call({ "type" => request["type"].merge("version" => "9.9") }, now: expires_at)
   end
 
-  def test_an_operation_is_offered_only_under_an_authority_it_permits
-    contract = Fixtures.contract("account-activity")
-    description = Fixtures.description("account-activity")
-    request = Fixtures.json("map-0.2/account-activity/confirm.request.json")
-    now = Time.iso8601(description.fetch("describedAt"))
-    assert_nil contract.request_problem(description, request, now:)
-    description["service"]["authority"] = "possession"
-    problem = contract.request_problem(description, request, now:)
-    assert_equal ["unsupported-operation", "Unsupported operation"], [problem.code, problem.title]
-    built = Mailschema.problem(problem.code, title: problem.title, detail: problem.detail,
-                                             request_id: request["requestId"],
-                                             interaction_id: request["interactionId"],
-                                             result_url: Mailschema.result_url(description, request["requestId"]))
-    assert_empty Mailschema.problem_errors(built)
+  def test_reports_root_errors_at_the_document_it_checks
+    contract = Fixtures.contracts.fetch("publication-approval")
+    assert_match %r{\A/details: }, contract.details_errors("details").first
+    assert_match %r{\A/input: }, contract.input_errors("request-changes", "comment").first
+    assert_match %r{\A/: }, Mailschema.contract_errors([]).first
   end
 
-  def test_form_rules
-    contract = Fixtures.contract("information-request")
-    description = Fixtures.description("information-request")
-    description["details"]["fields"]["required"] << "ghost"
-    assert_includes contract.description_errors(description).join, "ghost"
+  def test_refuses_a_contract_beyond_its_size_limit
+    contract = Fixtures.contract_document("campaign-send-approval")
+    contract["detailsSchema"]["description"] = "x" * Mailschema::CONTRACT_MAX_BYTES
+    assert_includes Mailschema.contract_errors(contract), "/: exceeds 262144 bytes"
   end
 
-  def test_capability_issuance
-    contract = Fixtures.contract("email-confirmation")
-    base = Fixtures.description("email-confirmation")
-    capability = base.dig("service", "execution", "url").split("/").last
-    assert_equal capability, Mailschema.capability(base)
-    replace = lambda do |from, to|
-      lambda do |d|
-        execution = d["service"]["execution"]
-        execution["url"] = execution["url"].sub(from, to)
-        execution["resultUrlTemplate"] = execution["resultUrlTemplate"].sub(from, to)
-      end
+  # Verdicts and reasons of the reference implementation's unportablePattern.
+  PATTERNS = {
+    "^[a-z][a-z0-9-]{0,63}$" => nil,
+    "^\\d{4}-\\d{2}$" => nil,
+    "^(?:ab|cd)+[\\-x-z]?\\u00e9$" => nil,
+    "[-a]" => nil,
+    "[a-]" => nil,
+    "a{2,}" => nil,
+    "^.+$" => "an unescaped dot",
+    "[a-z-0]" => "an ambiguous hyphen in a class",
+    "[z-a]" => "a class range out of order",
+    "[]" => "an empty character class",
+    "[a" => "an unclosed character class",
+    "[[a]]" => "a bracket inside a class",
+    "[a&&b]" => "&& inside a class",
+    "[\\d]" => "the escape \\d",
+    "(a)" => "a group other than (?:",
+    "(?:a" => "an unclosed group",
+    "a)" => "an unmatched )",
+    "a{2,1}" => "a {n,m} quantifier with m below n",
+    "a{x}" => "a malformed {n,m} quantifier",
+    "a**" => "a quantifier on a quantifier",
+    "*a" => "a quantifier with nothing to repeat",
+    "{" => "an unescaped {",
+    "a}" => "an unescaped }",
+    "\\w" => "the escape \\w",
+    "\\ud800" => "a surrogate \\u escape",
+    "\\u00g0" => "a malformed \\u escape",
+    "a\\" => "a trailing backslash",
+    "é" => "a character outside printable ASCII"
+  }.freeze
+
+  def test_holds_patterns_to_the_portable_subset
+    PATTERNS.each do |pattern, problem|
+      contract = Fixtures.contract_document("campaign-send-approval")
+      contract["detailsSchema"]["properties"]["summary"]["pattern"] = pattern
+      expected = problem && ["/detailsSchema/properties/summary: pattern #{JSON.generate(pattern)} uses #{problem}"]
+      assert_equal expected || [], Mailschema.contract_errors(contract), pattern
     end
+  end
+end
+
+class ImplementationTest < Minitest::Test
+  def record
+    contract = Fixtures.contracts.fetch("campaign-send-approval")
     {
-      "a short capability" => replace.call(capability, "short"),
-      "a trailing slash" => ->(d) { d["service"]["execution"]["url"] += "/" },
-      "a dot segment" => replace.call("/map/c/", "/map/./c/"),
-      "an encoded dot segment" => replace.call("/map/c/", "/map/%2E%2e/c/"),
-      "a dot segment in the result template" => lambda do |d|
-        d["service"]["execution"]["resultUrlTemplate"] = d["service"]["execution"]["resultUrlTemplate"]
-                                                         .sub("/results/", "/results/../results/")
-      end,
-      "a result template without it" => lambda do |d|
-        d["service"]["execution"]["resultUrlTemplate"] = "https://accounts.example.com/map/results/{requestId}"
-      end,
-      "a result template outside the execution URL" => lambda do |d|
-        d["service"]["execution"]["resultUrlTemplate"] = "https://accounts.example.com/map/r/c/#{capability}/{requestId}"
-      end,
-      "a request identifier in the fragment" => lambda do |d|
-        d["service"]["execution"]["resultUrlTemplate"] = "#{d["service"]["execution"]["url"]}/results\#{requestId}"
-      end,
-      "a human route with it" => ->(d) { d["service"]["humanUrl"] = "https://accounts.example.com/confirm/#{capability}" }
-    }.each do |name, mutate|
-      description = deep_copy(base)
-      mutate.call(description)
-      refute_empty contract.description_errors(description), name
+      "service" => "https://example.org",
+      "maintainer" => { "name" => "Example", "url" => "https://example.org" },
+      "type" => { "id" => contract.id, "version" => contract.version, "contractDigest" => contract.digest },
+      "operations" => ["approve"],
+      "binding" => "https://example.org/map-binding",
+      "status" => "Draft",
+      "documentation" => "https://example.org/docs/map",
+      "evidence" => [{ "kind" => "declaration", "url" => "https://example.org/docs/map", "summary" => "Supported." }]
+    }
+  end
+
+  def test_accepts_a_service_origin
+    assert_equal [], Mailschema.implementation_errors(record)
+    assert_equal [], Mailschema.implementation_errors(record.merge("service" => "https://example.org/"))
+    assert_equal record, Mailschema.parse_implementation(JSON.generate(record))
+  end
+
+  def test_refuses_an_operation_path_in_place_of_a_service_origin
+    %w[https://example.org/map https://EXAMPLE.org https://example.org:443].each do |service|
+      assert_equal ["/service: must be an HTTPS origin, not an operation path"],
+                   Mailschema.implementation_errors(record.merge("service" => service)), service
     end
-  end
-
-  # The capability is the path as written: a query, a fragment or an encoded slash
-  # never moves it.
-  def test_the_capability_is_the_last_segment_as_written
-    base = Fixtures.description("email-confirmation")
-    capability = Mailschema.capability(base)
-    at = ->(url) { Mailschema.capability(deep_copy(base).tap { |d| d["service"]["execution"]["url"] = url }) }
-    assert_equal capability, at.call("https://accounts.example.com/map/c/#{capability}?next=/x#/y")
-    assert_equal "a%2Fb", at.call("https://accounts.example.com/map/c/a%2Fb")
-    assert_equal "", at.call("https://accounts.example.com/map/c/#{capability}/")
-    assert_equal "", at.call("https://accounts.example.com")
-  end
-
-  def test_input_errors_point_into_the_input
-    contract = Fixtures.contract("content-review")
-    description = Fixtures.description("content-review")
-    request = Fixtures.json("map-0.2/content-review/approve.request.json")
-    pointers = lambda do |input, operation = "approve"|
-      found = contract.input_errors(description, request.merge("operation" => operation, "input" => input))
-      found.map { |error| error["pointer"] }
+    error = assert_raises(Mailschema::InvalidDocument) do
+      Mailschema.parse_implementation(JSON.generate(record.merge("service" => "https://example.org/map")))
     end
-    assert_equal ["/unexpected"], pointers.call({ "unexpected" => true })
-    assert_equal ["/feedback"], pointers.call({}, "request-changes")
-    assert_equal ["/feedback"], pointers.call({ "feedback" => "   " }, "request-changes")
-    assert_equal ["/a~1b~0c"], pointers.call({ "a/b~c" => true })
-    assert_equal [""], pointers.call({ "x" * 1500 => true })
-    astral = "\u{1F600}" * 600
-    assert_equal ["/#{astral}"], pointers.call({ astral => true })
-    long = contract.input_errors(description, request.merge("input" => { "x" * 1500 => true }))
-    invalid = Mailschema.problem("invalid-request", title: "Invalid", detail: "Invalid input.", errors: long,
-                                                    request_id: request["requestId"],
-                                                    interaction_id: request["interactionId"],
-                                                    result_url: "https://reviews.example/map/results/x")
-    assert_empty Mailschema.problem_errors(invalid)
-    assert_equal [""], pointers.call({}, "publish")
-  end
-
-  def test_field_bindings
-    contract = Fixtures.contract("information-request")
-    description = Fixtures.description("information-request")
-    request = Fixtures.json("map-0.2/information-request/submit-response.request.json")
-    values = request.dig("input", "values")
-    with = ->(input) { contract.input_errors(description, request.merge("input" => input)).map { |e| e["pointer"] } }
-    assert_includes with.call({ "values" => values.merge("ceoHomeAddress" => "x") }), "/values/ceoHomeAddress"
-    assert_includes with.call({ "values" => { "website" => "https://acme.example" } }), "/values/supportEmail"
-    assert_includes with.call({ "values" => values.merge("supportEmail" => "not an address") }), "/values/supportEmail"
-    assert_equal ["/values"], with.call({})
-  end
-
-  # A text field's format is the core lexical form of the same name, never a
-  # validator's format checker.
-  def test_field_formats_are_core_lexical_forms
-    contract = Fixtures.contract("information-request")
-    description = Fixtures.description("information-request")
-    request = Fixtures.json("map-0.2/information-request/submit-response.request.json")
-    values = request.dig("input", "values")
-    with = lambda do |changes|
-      input = { "values" => values.merge(changes) }
-      contract.input_errors(description, request.merge("input" => input)).map { |e| e["pointer"] }
-    end
-    assert_empty with.call("website" => "urn:isbn:0451450523", "supportEmail" => "support+map@acme.example")
-    assert_equal ["/values/website"], with.call("website" => "acme.example")
-    assert_equal ["/values/website"], with.call("website" => "https://acme.example/a b")
-    assert_equal ["/values/supportEmail"], with.call("supportEmail" => "support@acme..example")
-    assert_equal ["/values/supportEmail"], with.call("supportEmail" => "Support <support@acme.example>")
-  end
-
-  # Ruby's `$` matches before a line break; MAP patterns read as ECMA-262 does.
-  def test_requests_use_ecmascript_patterns
-    request = Fixtures.json("map-0.2/content-review/approve.request.json")
-    assert_empty Mailschema.request_errors(request)
-    refute_empty Mailschema.request_errors(request.merge("operation" => "approve\nevil"))
-    refute_empty Mailschema.request_errors(request.merge("requestId" => "#{request["requestId"]}\n"))
-  end
-
-  def test_result_rules
-    contract = Fixtures.contract("content-review")
-    declined = Fixtures.json("map-0.2/content-review/approve.declined.json")
-    assert_empty contract.result_errors(declined)
-    refute_empty contract.result_errors(declined.merge("reason" => "withdrawn"))
-    refute_empty contract.result_errors(declined.merge("output" => { "extra" => true }))
-    refute_empty contract.result_errors(declined.except("reason").merge("state" => "pending"))
-    refute_empty contract.result_errors(declined.merge("operation" => "publish"))
+    assert_equal "The value is not an implementation record.", error.message
   end
 end
