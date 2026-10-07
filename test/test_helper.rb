@@ -3,35 +3,31 @@
 require "minitest/autorun"
 require "mailschema"
 
-# Package preparation copies these fixtures from the MailSchema repository, so the
-# gem is tested against the exact documents the specification publishes.
+# Package preparation copies these fixtures from the MailSchema repository, so the gem is
+# tested against the exact documents and vectors the specification publishes.
 module Fixtures
   ROOT = File.expand_path("fixtures", __dir__)
+  ARTIFACTS = File.expand_path("../artifacts", __dir__)
 
   module_function
 
   def read(path) = File.binread(File.join(ROOT, path))
+
   def json(path) = JSON.parse(read(path))
 
-  def types
-    Dir.children(File.join(ROOT, "map-0.2")).select { |name| File.directory?(File.join(ROOT, "map-0.2", name)) }.sort
+  def example(slug) = json("examples/#{slug}.json")
+
+  def contract_path(slug) = Dir[File.join(ROOT, "contracts", "#{slug}-*.json")].first
+
+  # A fresh copy of a published contract's document, to change.
+  def contract_document(slug) = JSON.parse(File.binread(contract_path(slug)))
+
+  # Each published contract by the slug of its example.
+  def contracts
+    @contracts ||= Dir[File.join(ROOT, "contracts", "*.json")].to_h do |path|
+      [File.basename(path).sub(/-[0-9.]+\.json\z/, ""), Mailschema::Contract.parse(File.binread(path))]
+    end
   end
-
-  # The contract and request schema of a type, as an implementation vendors them.
-  def contract_files(slug)
-    document = JSON.parse(File.binread(Dir[File.join(ROOT, "contracts", "#{slug}-*.json")].max))
-    [document, json("schemas/#{document.dig("requestSchema", "url").split("/").last}")]
-  end
-
-  # Each type's contract, pinned by the digest its published description names.
-  def contract(slug)
-    @contracts ||= {}
-    @contracts[slug] ||= Mailschema::Contract.new(*contract_files(slug), digest: pinned(slug))
-  end
-
-  def pinned(slug) = description(slug).dig("type", "contractDigest")
-
-  def description(slug) = json("map-0.2/#{slug}/description.json")
 end
 
-def deep_copy(value) = JSON.parse(JSON.generate(value))
+def deep_copy(value) = Marshal.load(Marshal.dump(value))

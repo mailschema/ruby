@@ -1,0 +1,50 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "@vocab": "https://mailschema.org/vocab/map/0.3#",
+    "MailAction": "https://mailschema.org/vocab/map/0.3#MailAction",
+    "profile": {
+      "@id": "profile",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "type",
+      "@type": "@json"
+    },
+    "service": {
+      "@id": "service",
+      "@type": "@json"
+    },
+    "subject": {
+      "@id": "subject",
+      "@type": "@json"
+    },
+    "terms": {
+      "@id": "terms",
+      "@type": "@json"
+    },
+    "details": {
+      "@id": "details",
+      "@type": "@json"
+    },
+    "operations": {
+      "@id": "operations",
+      "@type": "@json"
+    },
+    "human": {
+      "@id": "human",
+      "@type": "@json"
+    },
+    "recipient": "recipient",
+    "inLanguage": "inLanguage",
+    "issuedAt": {
+      "@id": "issuedAt",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "expiresAt": {
+      "@id": "expiresAt",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    }
+  }
+}

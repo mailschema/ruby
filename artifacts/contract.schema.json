@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailschema.org/artifacts/map-0.3/schemas/contract.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "profile",
+    "name",
+    "summary",
+    "requirements",
+    "detailsSchema",
+    "operations"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri",
+      "pattern": "^https://",
+      "maxLength": 2048
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "profile": {
+      "const": "https://mailschema.org/profiles/map/0.3"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2048
+      },
+      "minItems": 1,
+      "maxItems": 64
+    },
+    "detailsSchema": {
+      "type": "object"
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "semantics",
+          "effects",
+          "bindings",
+          "actors",
+          "exactTerms",
+          "inputSchema",
+          "outcomes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "semantics": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "format": "uri",
+              "pattern": "^https://"
+            },
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true
+          },
+          "bindings": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "credential",
+                "capability"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 2,
+            "uniqueItems": true
+          },
+          "actors": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "human",
+                "agent"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 2,
+            "uniqueItems": true
+          },
+          "exactTerms": {
+            "type": "boolean"
+          },
+          "inputSchema": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "outcomes": {
+            "type": "object",
+            "minProperties": 1,
+            "propertyNames": {
+              "pattern": "^[a-z][a-z0-9-]{0,63}$"
+            },
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "capability": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "maxLifetimeSeconds"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "refusal",
+                  "protective-report",
+                  "address-confirmation"
+                ]
+              },
+              "maxLifetimeSeconds": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 604800
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "bindings": {
+                  "contains": {
+                    "const": "capability"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "capability"
+              ],
+              "properties": {
+                "inputSchema": {
+                  "type": "null"
+                },
+                "exactTerms": {
+                  "const": true
+                }
+              }
+            },
+            "else": {
+              "not": {
+                "required": [
+                  "capability"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 32
+    }
+  }
+}

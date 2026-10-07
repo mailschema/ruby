@@ -7,10 +7,11 @@ Gem::Specification.new do |spec|
   spec.version = Mailschema::VERSION
   spec.authors = ["MailSchema contributors"]
 
-  spec.summary = "Mail Action Protocol 0.2 tooling"
-  spec.description = "Parse, canonicalize, digest and validate Mail Action Protocol 0.2 documents, " \
-                     "verify the type contracts an implementation vendors, and build results and problems."
-  spec.homepage = "https://mailschema.org/tools"
+  spec.summary = "Mail Action Protocol 0.3 processing"
+  spec.description = "Parse, canonicalize, digest and validate Mail Action Protocol 0.3 descriptions, " \
+                     "type contracts and implementation records, extract and build the MAP part of an " \
+                     "email, and decide whether a verified DKIM signature qualifies a message."
+  spec.homepage = "https://mailschema.org"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.3.0"
 
@@ -21,14 +22,11 @@ Gem::Specification.new do |spec|
   spec.metadata["bug_tracker_uri"] = "https://github.com/mailschema/ruby/issues"
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  # The library, its canonical artifacts and its documents. The artifacts are copied
-  # from MailSchema and verified byte for byte before release, so they are listed
+  # The artifacts are copied from MailSchema by package preparation, so the files are listed
   # explicitly rather than taken from git.
-  spec.files = Dir["lib/**/*.rb", "schemas/*.json", "contexts/*.jsonld", "sig/**/*.rbs",
-                   "README.md", "LICENSE", "CHANGELOG.md"]
+  spec.files = Dir["lib/**/*.rb", "artifacts/**/*", "sig/**/*.rbs", "README.md", "LICENSE", "CHANGELOG.md"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "bigdecimal", ">= 3.1", "< 5"
-  spec.add_dependency "json", ">= 2.21", "< 4"
   spec.add_dependency "json_schemer", "~> 2.5"
+  spec.add_dependency "mail", "~> 2.8"
 end

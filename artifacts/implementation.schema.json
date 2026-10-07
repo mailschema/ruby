@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailschema.org/artifacts/map-0.3/schemas/implementation.schema.json",
+  "title": "MAP implementation record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "service",
+    "maintainer",
+    "type",
+    "operations",
+    "binding",
+    "status",
+    "documentation",
+    "evidence"
+  ],
+  "dependentRequired": {
+    "artifact": ["format"],
+    "format": ["artifact"]
+  },
+  "properties": {
+    "service": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "maintainer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "pattern": "^https://"
+        }
+      }
+    },
+    "type": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "contractDigest"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contractDigest": {
+          "type": "string",
+          "pattern": "^sha-256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "binding": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "Identifier of the binding specification or documented service binding. It is not a request destination. Clients must explicitly support it."
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "digest",
+        "digestMode"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha-256:[0-9a-f]{64}$"
+        },
+        "digestMode": {
+          "enum": [
+            "canonical-json",
+            "bytes"
+          ],
+          "description": "canonical-json hashes the RFC 8785 representation; bytes hashes the exact downloaded artifact. Both use SHA-256."
+        }
+      }
+    },
+    "format": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "Draft",
+        "Experimental",
+        "Stable",
+        "Deprecated",
+        "Superseded"
+      ]
+    },
+    "documentation": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "url",
+          "summary"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "declaration",
+              "test-report"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "successor": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri",
+      "pattern": "^https://"
+    }
+  }
+}

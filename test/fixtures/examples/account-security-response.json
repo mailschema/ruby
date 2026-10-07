@@ -1,0 +1,50 @@
+{
+  "@context": "https://mailschema.org/contexts/map-0.3.jsonld",
+  "@type": "MailAction",
+  "profile": "https://mailschema.org/profiles/map/0.3",
+  "type": {
+    "id": "https://mailschema.org/types/account-security-response",
+    "version": "0.1",
+    "contractDigest": "sha-256:ec7c85eb9415914a59be29496f6b50ea77839a579420155f17b39a5968a4e611"
+  },
+  "@id": "urn:uuid:0199a6c2-4b1e-7c3a-9d2e-5f8a1b2c3d43",
+  "issuedAt": "2026-10-02T08:00:00Z",
+  "expiresAt": "2026-10-03T08:00:00Z",
+  "inLanguage": "en",
+  "service": {
+    "id": "https://service.example",
+    "tenant": "urn:example:tenant:7"
+  },
+  "recipient": "owner@example.net",
+  "subject": {
+    "id": "urn:example:event:23",
+    "title": "Review a sign-in from a new device"
+  },
+  "terms": {
+    "id": "urn:example:security-alert:s23",
+    "version": "s23-r1"
+  },
+  "human": {
+    "url": "https://service.example/security/s23"
+  },
+  "details": {
+    "account": {
+      "id": "urn:example:account:7",
+      "label": "Example account"
+    },
+    "event": {
+      "id": "urn:example:event:23",
+      "occurredAt": "2026-10-02T07:50:00Z",
+      "activity": "Sign-in from a new device",
+      "device": "Example browser"
+    }
+  },
+  "operations": [
+    {
+      "id": "report-unrecognized",
+      "capability": {
+        "url": "https://service.example/c/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    }
+  ]
+}

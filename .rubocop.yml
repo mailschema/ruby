@@ -12,7 +12,7 @@ Style/StringLiteralsInInterpolation:
 Layout/LineLength:
   Max: 120
 
-# Validators state each rule where it applies; the builders' keywords are the API.
+# Validators state each rule where it applies.
 Metrics/MethodLength:
   Max: 25
 Metrics/AbcSize:

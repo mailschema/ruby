@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mailschema.org/artifacts/map-0.3/schemas/core.schema.json",
+  "title": "MAP 0.3 description shape; semantic checks in Core are additionally required",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "@context",
+    "@type",
+    "@id",
+    "profile",
+    "type",
+    "issuedAt",
+    "expiresAt",
+    "inLanguage",
+    "service",
+    "recipient",
+    "subject",
+    "terms",
+    "details",
+    "operations",
+    "human"
+  ],
+  "properties": {
+    "@context": {
+      "const": "https://mailschema.org/contexts/map-0.3.jsonld"
+    },
+    "@type": {
+      "const": "MailAction"
+    },
+    "@id": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri",
+      "maxLength": 2048
+    },
+    "profile": {
+      "const": "https://mailschema.org/profiles/map/0.3"
+    },
+    "type": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "contractDigest"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "pattern": "^https://",
+          "maxLength": 2048
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "contractDigest": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^sha-256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "issuedAt": {
+      "type": "string",
+      "minLength": 1,
+      "format": "date-time",
+      "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\dZ$"
+    },
+    "expiresAt": {
+      "type": "string",
+      "minLength": 1,
+      "format": "date-time",
+      "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\dZ$"
+    },
+    "inLanguage": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "service": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "pattern": "^https://(?![0-9.]+(:[0-9]+)?$)[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(:[0-9]{1,5})?$",
+          "maxLength": 2048
+        },
+        "tenant": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "maxLength": 2048
+        }
+      }
+    },
+    "recipient": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "maxLength": 2048
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "terms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "maxLength": 2048
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[ -~]+$",
+          "maxLength": 1024
+        }
+      }
+    },
+    "details": {
+      "type": "object"
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "capability": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "url"
+            ],
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "format": "uri",
+                "pattern": "^https://[^/?#@]+([/?][^#]*)?$",
+                "maxLength": 4096
+              }
+            }
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 32
+    },
+    "human": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "pattern": "^https://[^/?#@]+([/?][^#]*)?$",
+          "maxLength": 4096
+        }
+      }
+    }
+  }
+}
